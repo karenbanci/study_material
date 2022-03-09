@@ -55,7 +55,7 @@ pilha.print()
 */
 
 // CONVERSOR DE DECIMAL PARA BINÁRIO
-
+/*
 function  dec2Bnin(decNumber) {
   let restStack = [],
   rest,
@@ -75,3 +75,28 @@ function  dec2Bnin(decNumber) {
 }
 
 console.log(dec2Bnin(23))
+*/
+
+// CONVERSOR DE BASE PILHAS
+/*
+function baseConverter(decNumber, base) {//123, 16
+  let restStack = [],
+  rest,
+  baseString = '',
+  // as letras podem ser utilizadas quando converte para hexadecimal
+  digits = '0123456789ABCDEF'
+
+  while(decNumber > 0){
+    rest = Math.floor(decNumber % base)
+    restStack.push(rest)
+    decNumber = Math.floor(decNumber / base)
+  }
+
+  while(restStack.length > 0){
+    baseString += digits[restStack.pop()]
+  }
+
+  return baseString
+}
+ console.log(baseConverter(123,16))
+*/
