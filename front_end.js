@@ -48,4 +48,15 @@ print this:
 2   7   10  15  18
 3   6   11  14  19
 4   5   12  13  20
+
+para as colunas pares
+even: rows * colIndex + 1 => 4 * 2 = 9
+
+para colunas ímpares
+odd: rows * (colIndex +1) => 4 * (1+1) = 8
+
+para calcular o resto
+even: matrix[rowIndex-1][colIndex]+1 => 9+1 = 10
+
+odd: matrix[rowIndex-1][colIndex]-1 => 8-1 = 7
 */
