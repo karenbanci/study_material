@@ -19,13 +19,18 @@ https://www.regextester.com/106224
 
 */
 
-var defangIPaddr = function(address) {
-//    [^0-9a-zA-Z]     regex de caracteres especiais
-//   / regEX /g  é para englobar todos os caracteres especiais
+// var defangIPaddr = function(address) {
+// //    [^0-9a-zA-Z]     regex de caracteres especiais
+// //   / regEX /g  é para englobar todos os caracteres especiais
 
-    var replace = address.replace(/[^0-9a-zA-Z]/g, "[.]")
-    return replace
+//     var replace = address.replace(/[^0-9a-zA-Z]/g, "[.]")
+//     return replace
+// };
+
+var defangIPaddr = function (address) {
+  var replace = address.replaceAll(".", "[.]");
+  console.log(replace);
+  return replace;
 };
-
-
-
+address = "1.1.1.1";
+defangIPaddr(address);
