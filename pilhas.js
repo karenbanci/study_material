@@ -78,7 +78,7 @@ console.log(dec2Bnin(23))
 */
 
 // CONVERSOR DE BASE PILHAS
-/*
+
 function baseConverter(decNumber, base) {//123, 16
   let restStack = [],
   rest,
@@ -99,4 +99,4 @@ function baseConverter(decNumber, base) {//123, 16
   return baseString
 }
  console.log(baseConverter(123,16))
-*/
+
