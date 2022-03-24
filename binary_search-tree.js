@@ -38,9 +38,9 @@ insert(arvore, 8)
 // console.log(arvore)
 
 
-/* A COMPLEXIDADE DESSE ALGORITMO É => O(raiz(n)) => O(log(n))
+/* A COMPLEXIDADE DESSE ALGORITMO É  => O(log(n))
 
-é muito fácil chegar nessa solução, pq se eu tiver 16 elementos, farei somente 4 buscas para achar o resultado, por isso raiz(n)
+é muito fácil chegar nessa solução, pq se eu tiver 16 elementos, farei somente 4 buscas para achar o resultado, por isso log(n)
 */
 
 function search(tree, value) {
