@@ -27,13 +27,11 @@ Output: [3,4,5,5,4,null,7]
  * @return {TreeNode}
  */
 
-/*
+
+let root1 = [1,3,2,5]
+let root2 = [2,1,3,null,4,null,7]
 
 
-
-
-
-*/
 function preOrder(tree) {
   // sempre imprime o value primeiro, value começa antes de todo mundo
   console.log(tree.val)
@@ -46,12 +44,6 @@ var mergeTrees = function(root1, root2) {
 
 // se existir raiz1 e raiz2
     if (root1 && root2) {
-
-//  imprime preOrder1
-        // preOrder(root1)
-
-//  imprime preOrder1
-        // preOrder(root2)
 
 // aqui vou somar os valores das raízes
         let sum = root1.val + root2.val
