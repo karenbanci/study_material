@@ -12,26 +12,11 @@ function queueClass() {
     // remove o primeiro item da fila
     return items.shift();
   };
-
-  this.front = function () {
-    // esse metodo torna o primeiro elemento da fila
-    return items[0];
-  };
-
+  
   this.isEmpty = function () {
-    // este metodo verifica se a fila está vazia
-    return items.length === 0;
-  };
-
-  this.size = function () {
-    // retorna o tamanho da fila
-    return items.length;
-  };
-
-  this.print = function () {
-    //imprimir a fila no console
-    console.log(items.toString());
-  };
+  // este metodo verifica se a fila está vazia
+  return items.length === 0
+  }
 }
 
 /*
