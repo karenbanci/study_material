@@ -59,6 +59,7 @@ function levelByLevel(tree) {
   // add uma linha vazia(pulando para a linha debaixo)
   queue.push(null)
 
+  // para futuramente adicionar o valor da árvore atual nessa string vazia
   let result = "";
 
   do {
