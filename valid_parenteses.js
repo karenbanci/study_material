@@ -30,20 +30,38 @@
 /**
  * @param {string} s
  * @return {boolean}
- * (()) > true
- *([)] > false
 
- *  (    >f
+ fazer um split para separar cada elemento da string
+ s = "[{}]{[]}"
+ s.split("")
+ index    0    1    2    3     4    5    6   7
+.....s = "[", "{", "}", "]", "{", "[", "]", "}"
 
- *  ( )  >t
- *  ^ ^
- *  0 1 < i
- *t f t < parentesisFechado
- * o parenteses fechado retorna true no final pq ele vai dar macth com o parenteses de abertura
+vai ter que iterar cada elemento da array para cada caracter atual for o caracter index s[i]
+
+colocar dentro de uma array vazia os caracteres de abertura
+arr = [];
+arr.push(s)
+arr = [     [, {, {, [      ]
+essa array precisa dos seus caracteres de fechamento
+se abertura for [, seu fechamento será ]
+se abertura for {, seu fechamento será }
+
+entao a quantidade de caracteres de abertura que está na array tem que ser a mesma quantidade de caracteres de fechamento, além disso tem que ser do mesmo tipo
+se o caracter do S for igual ao caracter do fechamento, terá que remover o último caractere da array
+arr.pop()
+
+caso contrário retornará falso se todos os caracteres de abertura não tiver seu par de fechamento (se nao for igual)
+
+retornar true se a array estiver vazia
+
+retornar falso se a array nao tiver caracter fechador para todos os abertos
+
  */
 
 var isValid = function(s) {
-    let parentesisFechado = true;
+    //let parentesisFechado = true;
+    // uma array vazia que irei incluir os caracteres abertos, conta a quantidade e tipo de caracteres que abrem para comparar e da match com a quantidade e tipo dos caracteres de fechamento
     let abertos = [];
     caraterAtual = '';
     // s="(]"
@@ -62,7 +80,7 @@ var isValid = function(s) {
         let ultimoAberto = abertos[abertos.length-1];
         let fechadorDoUltimoAberto;
 
-        // se o ultimoAberto é "(", então o fechador seria: ); e asi por diante com todos os fechadores
+        // se o ultimoAberto é "(", então o fechador seria: ); e assim por diante com todos os fechadores
         if ( ultimoAberto == '(') {
           fechadorDoUltimoAberto = ')';
         }
