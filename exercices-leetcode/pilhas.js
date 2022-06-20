@@ -1,5 +1,5 @@
 // Pilhas, (LIFO: Last in first out), ou seja, último a entrarné o primeiro a sair. lembrar da pilha de livros
-/*
+
 function stack() {
   let items = [];
 
@@ -52,7 +52,7 @@ pilha.push(10);
 // console.log(pilha.isEmpty())
 
 pilha.print()
-*/
+
 
 // CONVERSOR DE DECIMAL PARA BINÁRIO
 /*
@@ -99,4 +99,3 @@ function baseConverter(decNumber, base) {//123, 16
   return baseString
 }
  console.log(baseConverter(123,16))
-
