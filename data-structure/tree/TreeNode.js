@@ -14,6 +14,7 @@ class TreeNode {
 
   removeChild(childToRemove) {
     const length = this.children.length;
+    // Se o filho alvo não for encontrado no children array, então teríamos que descer outro nível percorrendo cada filho no array e repetir o processo.
     this.children = this.children.filter((child) => {
       return childToRemove instanceof TreeNode
         ? child !== childToRemove
@@ -41,6 +42,12 @@ class TreeNode {
     console.log(this.data);
     this.children.forEach((child) => child.depthFirstTraversal());
   }
+
+  // Assign an array to contain the current root node
+  // While the array is not empty
+  // Extract the first tree node from the array
+  // Display tree node's data
+  // Append tree node's children to the array
 
   breadthFirstTraversal() {
     let queue = [this];
