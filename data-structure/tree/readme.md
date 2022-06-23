@@ -11,3 +11,6 @@ In this lesson, you have successfully built a tree data structure in JavaScript.
 * a .depthFirstTraversal() recursive method that fully traverses the tree with a top-down approach for each child of the tree
 
 * a .breadthFirstTraversal() iterative method that fully traverses the tree a level at a time, instead of a child at a time
+
+
+reference to study: <https://github.com/trekhleb/javascript-algorithms/tree/master/src/data-structures/tree>
