@@ -12,8 +12,8 @@ A abordagem recursiva apresentada nesta lição é semelhante às implementaçõ
 
 ## Exercícios
 
-<https://leetcode.com/problems/fibonacci-number/>
-<https://leetcode.com/problems/power-of-three/>
+<https://leetcode.com/problems/fibonacci-number/> <\br>
+<https://leetcode.com/problems/power-of-three/> <\br>
 <https://www.codecademy.com/code-challenges/code-challenge-egg-dropper-javascript>
 
 fonte: Codecademy
