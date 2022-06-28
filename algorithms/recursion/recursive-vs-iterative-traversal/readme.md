@@ -9,3 +9,11 @@ Nesta lição, você aprenderá como implementar uma solução recursiva para um
 * **Caso base 3** – retorna uma chamada para .findNodeRecursively()com o próximo nó como argumento.
 
 A abordagem recursiva apresentada nesta lição é semelhante às implementações para percorrer outras estruturas de dados, como árvores e diretórios. Esse é um insight importante a ser lembrado à medida que você encontra implementações mais recursivas.
+
+## Exercícios
+
+<https://leetcode.com/problems/fibonacci-number/>
+<https://leetcode.com/problems/power-of-three/>
+<https://www.codecademy.com/code-challenges/code-challenge-egg-dropper-javascript>
+
+fonte: Codecademy
