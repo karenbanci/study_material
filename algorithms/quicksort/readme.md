@@ -30,3 +30,5 @@ As etapas recursivas são executadas após o particionamento:
 ### Console.log
 
 ![Result](./result.png)
+
+Fonte: <https://www.codecademy.com/paths/front-end-engineer-career-path/tracks/fecp-22-algorithms/modules/wdcp-22-quicksort/informationals/wdcp-practice-quicksort>
