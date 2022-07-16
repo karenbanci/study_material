@@ -12,38 +12,45 @@ Input: s = "rat", t = "car"
 Output: false
 
 * @param {string} s
-* @param {string} t
+* @param {string}
 * @return {boolean}
+
+1. verificar o tamanho dessas duas arrays, se tiverem o mesmo tamanho continue
+
+2. separar cada caracter
 
 */
 
 var isAnagram = function(s, t) {
-  console.log(s,t)
+  console.log("string s:", s);
+  console.log('string t:', t);
+
   if(s.length === t.length){
-    const arr1 = s.split('');
-    const arr1Sorted = arr1.sort();
-    console.log(arr1Sorted);
+    const string1 = s.split('').sort().join('');
+    console.log("string 1:", string1);
 
-    const arr2 = t.split('');
-    const arr2Sorted = arr2.sort();
-    console.log(arr2Sorted);
+    const string2 = t.split("").sort().join("");
+    console.log("string 2:", string2);
 
-
-    if(_.isEqual(arr1Sorted, arr2Sorted)){
+    if(string1 === string2){
+      console.log("é um anagrama")
       return true;
     } else {
-      false
+      console.log("sao diferentes");
+      return false;
     }
 
-
-
   }
+  return false;
 };
 
 // const s = "anagram";
 // const t = "nagaram";
 
-const s = "rat";
-const t = "car";
+// const s = "rat";
+// const t = "car";
+
+const s = "caramelo";
+const t = "chocolat";
 
 console.log(isAnagram(s, t));
