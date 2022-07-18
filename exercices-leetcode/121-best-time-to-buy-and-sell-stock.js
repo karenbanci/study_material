@@ -54,6 +54,7 @@ var maxProfit = function (prices) {
   return maxProfitStock
 }
 
+//  ----- aqui o algoritmo leva maior tempode execução
 // var maxProfit = function (prices) {
 //   let maxProfitStock = 0;
 
