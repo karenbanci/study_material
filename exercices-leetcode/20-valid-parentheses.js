@@ -24,54 +24,62 @@ Constraints:
 1 <= s.length <= 104
 s consists of parentheses only '()[]{}'.*/
 
- var isValid = function (s) {
+var isValid = function (s) {
+  const array = s.split("");
+  console.log(array);
 
-  let array = s.split('');
-  console.log('nova array', array);
+  let arrayAbertos = [];
 
-  for (var i = 0; i < array.length; i++) {
+  for (let i = 0; i < array.length; i++) {
+    let caracterAtual = array[i];
+    if (
+      caracterAtual === "(" ||
+      caracterAtual === "{" ||
+      caracterAtual === "["
+    ) {
+      arrayAbertos.push(caracterAtual);
+      console.log("inclui os abertos", arrayAbertos);
 
-    let atual = array[i];
-    // let aberto = '';
-    // let fechamentoDoUltimoAberto = [];
+    } else {
+      const arrayUltimoAberto = arrayAbertos[arrayAbertos.length - 1];
+      console.log("ultimo abertooooo ----", arrayUltimoAberto);
 
+      let fechadorDoUltimoAberto;
 
-    if (atual === "(" || atual === "[" || atual === "{") {
-      // aberto.push(atual);
-      // console.log('aberto', aberto);
-
-      if (atual === "(") {
-        console.log("nova atual", atual);
-        if (fechamento === ")") {
-          console.log("nova fechamento", fechamento);
-          return true;
-        }
-      } else if (atual === "[") {
-        console.log("nova atual", atual);
-
-        if (fechamento === "]") {
-          console.log("nova fechamento", fechamento);
-
-          return true;
-        }
-      } else if (atual === "{") {
-        console.log("nova atual", atual);
-
-        if (fechamento === "}") {
-          console.log("nova fechamento", fechamento);
-
-          return true;
-        }
+      if (arrayUltimoAberto === "(") {
+        fechadorDoUltimoAberto = ")";
       }
 
-    }
-    if(array.length === 0) {
-      return true;
-    } else {
-      return false;
+      if (arrayUltimoAberto === "{") {
+        fechadorDoUltimoAberto = "}";
+      }
+
+      if (arrayUltimoAberto === "[") {
+        fechadorDoUltimoAberto = "]";
+      }
+
+      if (caracterAtual === fechadorDoUltimoAberto) {
+        arrayAbertos.pop();
+        console.log("atual abertos *******", arrayAbertos);
+      } else {
+        return false;
+      }
     }
   }
-}
+  if(arrayAbertos.length == 0){
+    return true;
+  } else {
+    return false;
+  }
+};
 
-const s = "(){}[]";
+const s = "(";
 console.log(isValid(s));
+
+// if(array[i] === ")" || array[i] === '}' || array[i] === ']') {
+//   arrayFechados.push(array[i]);
+//   console.log("inclui os fechados", arrayFechados)
+// }
+
+// const arrayUltimoFechado = arrayFechados[arrayFechados.length -1];
+// console.log('ultimo fechadooooo ----', arrayUltimoFechado);
