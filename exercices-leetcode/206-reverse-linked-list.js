@@ -26,10 +26,23 @@ var reverseList = function (head) {
       // avança para o proximo
       prev = current;
       current = next;
+
     }
     return prev;
 };
 
-const list = [1, 2, 3, 4, 5];
+const list = {
+  val: 1,
+  next: {
+    val: 2,
+    next: {
+      val: 3,
+      next: {
+        val: 4,
+        next: null
+      }
+    }
+  }
+}
 
 console.log(reverseList(list));
