@@ -22,7 +22,7 @@ var majorityElement = function (nums) {
   const objeto = new Object();
 
   for (let i = 0; i < n; i++) {
-    // encrease value into the object, how many numbers repeated
+    // encrease value into the object, how many numbers are repeated
     if (objeto[nums[i]]) {
       // if exist this key, encrease +1
       objeto[nums[i]]++;
@@ -32,7 +32,7 @@ var majorityElement = function (nums) {
     }
   }
   console.log(objeto);
-  // here I will do check
+  // here, I will check
   let keys = Object.keys(objeto);
 
   // check each key
