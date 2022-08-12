@@ -42,18 +42,20 @@ const list2 = {
 
 var mergeTwoLists = function(list1, list2) {
   let newList = new ListNode();
-  console.log("lista 3 ", newList);
-  const dummy = newList
+  console.log("nova lista, ainda vazia ", newList);
+  const dummy = newList;
 
   while(list1 && list2){
     // compare if value to list1 is less than value to list2
     if(list1.val < list2.val){
+      // newList.next - significa que estou pegando o ponteiro
       newList.next = list1;
       list1 = list1.next;
     } else {
       newList.next = list2;
       list2 = list2.next;
     }
+    // continua apontando para o último
     newList = newList.next
   }
   if(list1){
@@ -66,4 +68,4 @@ var mergeTwoLists = function(list1, list2) {
   return dummy.next
 };
 
-console.log(mergeTwoLists(list1, list2))
+console.log(JSON.stringify(mergeTwoLists(list1, list2)));
