@@ -3,16 +3,34 @@ Primeira informação é saber aonde visita o nó, se é preOrder, inOrder ou po
 */
 
 let arvore = {
+  value: 10,
   left: {
-    left: undefined,
-    right: {
-      value: 3
+    value: 5,
+    left: {
+      value: 9,
+      right: undefined,
+      left: undefined,
     },
-    value: 2
+    right: {
+      value: 18,
+      right: undefined,
+      left: undefined,
+    },
   },
-  right: undefined,
-  value: 10
-}
+  right: {
+    value: 20,
+    left: {
+      value: 3,
+      right: undefined,
+      left: undefined,
+    },
+    right: {
+      value: 7,
+      right: undefined,
+      left: undefined,
+    },
+  },
+};
 
 /* Primeira forma de navegar pela árvore
  O que a preOrder faz?
@@ -55,4 +73,20 @@ function posOrder(tree) {
   console.log(tree.value)
 }
 console.log('posOrder')
-posOrder(arvore)
+posOrder(arvore);
+
+function bfs(tree) {
+
+  let queue = [],
+    current = tree;
+
+  queue.push(current);
+
+  while (queue.length) {
+    current = queue.shift();
+    console.log(current.val);
+
+    if (current.left) queue.push(current.left);
+    if (current.right) queue.push(current.right);
+  }
+}
