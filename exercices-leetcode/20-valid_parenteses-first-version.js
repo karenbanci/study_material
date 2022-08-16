@@ -155,15 +155,28 @@ var isValid = function(s) {
   console.log(resultado == esperado ? "CORRETO" : "incorreto :(", "deu", resultado);
 
 
+  // outra solucao
+var isValid = function (s) {
+  const stack = [];
 
+  for (let i = 0; i < s.length; i++) {
+    let c = s.charAt(i);
+    switch (c) {
+      case "(":
+        stack.push(")");
+        break;
+      case "[":
+        stack.push("]");
+        break;
+      case "{":
+        stack.push("}");
+        break;
+      default:
+        if (c !== stack.pop()) {
+          return false;
+        }
+    }
+  }
 
-
-  // // se parentes está aberto, entao parentesisFechado é falso
-  //     // if (caraterAtual == "(" || caraterAtual == "[" || caraterAtual == "{") {
-  //       parentesisFechado = false;
-  //     } else if (caraterAtual == ")" || caraterAtual == "]" || caraterAtual == "}") {
-  //       parentesisFechado = true;
-  //     }
-  // }
-
-  // return parentesisFechado;
+  return stack.length === 0;
+};
