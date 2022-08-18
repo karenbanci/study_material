@@ -51,3 +51,10 @@ console.log("----------------------------------------");
 const c = 0b11111111111111111111111111111101;
 console.log("esperado: 31");
 console.log("caso C resultado", hammingWeight(c));
+
+
+let d = 0b1000;
+let e = 0b0110;
+console.log('resultado do calculo d ', d-e);
+
+console.log("resultado do calculo b ", (d - e).toString(2));
