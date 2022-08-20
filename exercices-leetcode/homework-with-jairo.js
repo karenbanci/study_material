@@ -21,23 +21,23 @@ console.log(" ------------ exercício 2 ---------------");
 function concatenate(c, d) {
   const arrayToConcat = [];
   let string = "";
-  const stringC = c.toString().replace("," , "");
-  const stringD = d.toString().replace(",", "");
+  // const stringC = c.toString().replace("," , "");
+  // const stringD = d.toString().replace(",", "");
 
-  // console.log('string C', stringC);
-  // console.log("string D", stringD);
 
-  for (let i = 0; i < stringC.length; i++) {
-    for (let j = 0; j < stringD.length; j++) {
-      string += (stringC[i] + stringD[j]);
+  for (let i = 0; i < c.length; i++) {
+    for (let j = 0; j < d.length; j++) {
+      // soma de string com numero resulta em string
+      string += (c[i].toString() + d[j]);
     }
+    arrayToConcat.push(string);
+    string = '';
   }
-  arrayToConcat.push(string);
-
   // console.log("resultado final: ", arrayToConcat);
   return arrayToConcat;
 }
 
 const c = [1, 2];
 const d = [5, 6];
+console.log("saída esperada: ['1516' , '2526']");
 console.log(concatenate(c, d));
