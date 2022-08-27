@@ -23,6 +23,7 @@ var decompressRLElist = function(nums) {
 
   for(let i = 0; i < nums.length; i++) {
     console.log(`i ${i}`)
+    // aqui estou determinando a variavel de frequencia e valor 
     const [freq, val] = [nums[2 * i], nums[2 * i + 1]];
 
     for (let j = 0; j < freq; j++) {
