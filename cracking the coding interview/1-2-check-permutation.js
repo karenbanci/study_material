@@ -25,8 +25,4 @@ const b = "sacoca";
 
 console.log(permutation(a, b));
 
-// manipulação de objeto
-/* const objeto = {x:1};
-objeto.x = 5;
-objeto.y = 3;
-console.log("objeto" + JSON.stringify(objeto)); */
+
