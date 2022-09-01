@@ -179,3 +179,34 @@ console.log(JSON.stringify(mergeTwoLists(null,null)));
 
 console.log("Ex 3");
 console.log(JSON.stringify(mergeTwoLists(null, new ListNode(0, null))));
+
+
+// var mergeTwoLists = function (list1, list2) {
+//   let newList = new ListNode();
+//   console.log("nova lista, ainda vazia ", newList);
+//   const dummy = newList;
+
+//   while (list1 && list2) {
+//     // compare if value to list1 is less than value to list2
+//     if (list1.val < list2.val) {
+//       // newList.next - significa que estou pegando o ponteiro
+//       newList.next = list1;
+//       list1 = list1.next;
+//     } else {
+//       newList.next = list2;
+//       list2 = list2.next;
+//     }
+//     // continua apontando para o último
+//     newList = newList.next;
+//   }
+//   if (list1) {
+//     newList.next = list1;
+//   }
+//   if (list2) {
+//     newList.next = list2;
+//   }
+//   console.log(JSON.stringify(dummy));
+//   return dummy.next;
+// };
+
+// console.log(JSON.stringify(mergeTwoLists(list1, list2)));
