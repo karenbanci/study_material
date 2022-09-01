@@ -26,12 +26,17 @@ obj = { "a": 1, "b": 2}
   for(let i = 0; i < frase.length; i++){ // i = 2
     // se o objeto existe
     // a letra ta repetida
+    
     if (objeto[frase[i]]) {
       // que tal se retornamos falso aqui?  return false;
       // frase[i] = "b"
       // objeto = {"a":1, "b":1}
       // objeto[frase[i]] = objeto["b"] = 1 - o "b"  existe na linha 33
+
+
       objeto[frase[i]]++;
+
+
       // objeto = {"a":1, "b":2}
 
       if (objeto[frase[i]] >= 2) {
@@ -55,7 +60,7 @@ const isUnique = function(frase){
 
   let objeto = new Object();
  // EXEMPLO: "abbc"
-  for(let i = 0; i < frase.length; i++){ 
+  for(let i = 0; i < frase.length; i++){
 
     // a letra já existe dentro do objeto
     if (objeto[frase[i]]) {
