@@ -11,23 +11,23 @@ Output: [1,1,2,3,4,4]
 
 //  Definition for singly-linked list.
 function ListNode(val, next) {
-  this.val = (val===undefined ? 0 : val)
-  this.next = (next===undefined ? null : next)
+  this.val = val === undefined ? 0 : val;
+  this.next = next === undefined ? null : next;
 }
 
 // let list1 = [1,2,4];
 // let list2 = [1,3,4];
 
- const list1 = {
+const list1 = {
   val: 1,
   next: {
     val: 2,
     next: {
       val: 4,
-      next: null
-    }
-  }
-}
+      next: null,
+    },
+  },
+};
 const list2 = {
   val: 1,
   next: {
@@ -39,33 +39,39 @@ const list2 = {
   },
 };
 
+var mergeTwoLists = function (l1, l2) {
 
-var mergeTwoLists = function(list1, list2) {
-  let newList = new ListNode();
-  console.log("nova lista, ainda vazia ", newList);
-  const dummy = newList;
+  let nullNode = new ListNode();
 
-  while(list1 && list2){
-    // compare if value to list1 is less than value to list2
-    if(list1.val < list2.val){
-      // newList.next - significa que estou pegando o ponteiro
-      newList.next = list1;
-      list1 = list1.next;
+  //lista 3
+  let prev = nullNode;
+
+  //enquanto existir lista 1 e lista 2
+  while (l1 && l2) {
+
+    // se o valor da lista 1 for maior ou igual ao valor da lista 2
+    if (l1.val >= l2.val) {
+      // o próximo node da lista 3 vai ser a lista 2
+      prev.next = l2;
+
+      // aqui encaminha para o próximo valor
+      l2 = l2.next;
+
     } else {
-      newList.next = list2;
-      list2 = list2.next;
+      // o próximo node da lista 3 vai ser a lista 1
+      prev.next = l1;
+
+      // aqui encaminha para o próximo valor
+      l1 = l1.next;
     }
-    // continua apontando para o último
-    newList = newList.next
+
+    //aqui iremos para o próximo node da lista 3
+    prev = prev.next;
   }
-  if(list1){
-    newList.next = list1;
-  }
-  if(list2){
-    newList.next = list2;
-  }
-  console.log(JSON.stringify(dummy))
-  return dummy.next
+
+  
+  prev.next = l1 || l2;
+  return JSON.stringify(nullNode.next);
 };
 
-console.log(JSON.stringify(mergeTwoLists(list1, list2)));
+console.log(mergeTwoLists(list1, list2));
