@@ -25,61 +25,9 @@ Constraints:
 s consists of parentheses only '()[]{}'.*/
 
 var isValid = function (s) {
-  const array = s.split("");
-  console.log(array);
 
-  let arrayAbertos = [];
-
-  for (let i = 0; i < array.length; i++) {
-    let caracterAtual = array[i];
-    if (
-      caracterAtual === "(" ||
-      caracterAtual === "{" ||
-      caracterAtual === "["
-    ) {
-      arrayAbertos.push(caracterAtual);
-      console.log("inclui os abertos", arrayAbertos);
-
-    } else {
-      const arrayUltimoAberto = arrayAbertos[arrayAbertos.length - 1];
-      console.log("ultimo abertooooo ----", arrayUltimoAberto);
-
-      let fechadorDoUltimoAberto;
-
-      if (arrayUltimoAberto === "(") {
-        fechadorDoUltimoAberto = ")";
-      }
-
-      if (arrayUltimoAberto === "{") {
-        fechadorDoUltimoAberto = "}";
-      }
-
-      if (arrayUltimoAberto === "[") {
-        fechadorDoUltimoAberto = "]";
-      }
-
-      if (caracterAtual === fechadorDoUltimoAberto) {
-        arrayAbertos.pop();
-        console.log("atual abertos *******", arrayAbertos);
-      } else {
-        return false;
-      }
-    }
-  }
-  if(arrayAbertos.length == 0){
-    return true;
-  } else {
-    return false;
-  }
 };
 
-const s = "(";
+const s = "()[]{}";
 console.log(isValid(s));
 
-// if(array[i] === ")" || array[i] === '}' || array[i] === ']') {
-//   arrayFechados.push(array[i]);
-//   console.log("inclui os fechados", arrayFechados)
-// }
-
-// const arrayUltimoFechado = arrayFechados[arrayFechados.length -1];
-// console.log('ultimo fechadooooo ----', arrayUltimoFechado);
