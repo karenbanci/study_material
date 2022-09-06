@@ -4,8 +4,8 @@ You are given an array items, where each items[i] = [typei, colori, namei] descr
 The ith item is said to match the rule if one of the following is true:
 
 ruleKey == "type" and ruleValue == typei.
-ruleKey == "color" and ruleValue == colori.
-ruleKey == "name" and ruleValue == namei.
+ruleKey == "color" and ruleValue == color.
+ruleKey == "name" and ruleValue == name.
 Return the number of items that match the given rule.
 
 Example 1:
