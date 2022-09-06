@@ -21,36 +21,33 @@ Constraints:
 function getShortestUniqueSubstring(arr, str) {
   // separando os caracteres de entrada
   const elements = str.split("");
-  console.log("string separada: " + elements);
+  // console.log("string separada: " + elements);
 
   let newString = "";
 
-  const arrayOrganizada = arr.sort().toString();
 
   // aqui será determinada a quantidade de pares que farão a varredura na string
   const quantityOfCaractereToSweep = arr.length;
-  console.log(
-    "quantidade de elementos para varredura: " + quantityOfCaractereToSweep
-  );
+  // console.log(
+  //   "quantidade de elementos para varredura: " + quantityOfCaractereToSweep
+  // );
 
   for (let j = quantityOfCaractereToSweep; j <= elements.length; j++) {
     // fazendo iteração para cada elemento da string
     for (let i = 0; i < elements.length; i++) {
-      console.log("i: " + i);
-      console.log("j: " + j);
+      // console.log("i: " + i);
+      // console.log("j: " + j);
 
 
       //aqui será a cópia da array (substring temporária)
       let sliced = elements.slice(i, i + j);
-      console.log("slicedado: " + sliced);
+      // console.log("slicedado: " + sliced);
 
-      // estou invertendo a string fazendo uma nova cópia utilizando o slice
-      const sortido = sliced.slice().sort().toString();
       // cópia da array inicial
       const comparador = arr.slice();
 
       // aqui comparando se o resultado com os caracteres invertidos ou caracteres normal for igual a array de entrada, colocar dentro da string vazia
-      //toString() sua função é converter a array para string e fazer a comparação por valores, ou seja, comparar os valores do resultado com a array de entrada
+
       for(let k = 0 ; k < sliced.length; k++){
         //criando uma variável para pegar o elemento do comparador
         const indiceDoElementoK = comparador.indexOf(sliced[k]);
