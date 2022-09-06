@@ -24,34 +24,34 @@ Constraints:
 1 <= s.length <= 104
 s consists of parentheses only '()[]{}'.
 
-1a iteração - hasMap[s[i]] - s[0] = "("
+1a iteração - hashMap[s[i]] - s[0] = "("
   ele vai adicionar o valor da abertura no stack
       stack.push(hashMap[s[0]]);
       stack = [")"]
 
-2a iteração - hasMap[s[i]] - s[1] = ")"
+2a iteração - hashMap[s[i]] - s[1] = ")"
       else if (stack.length > 0 && stack[stack.length - 1] === s[i])
       else if (1 > 0 && stack[1-1] === s[1])
       else if (1 > 0 && stack[0] === s[1]) - sim
       stack.pop()
 
-3a iteração - hasMap[s[i]] - s[2] = "["
+3a iteração - hashMap[s[i]] - s[2] = "["
   ele vai adicionar o valor da abertura no stack
       stack.push(hashMap[s[2]]);
       stack = ["]"]
 
-4a iteração - hasMap[s[i]] - s[3] = "]"
+4a iteração - hashMap[s[i]] - s[3] = "]"
       else if (stack.length > 0 && stack[stack.length - 1] === s[i])
       else if (1 > 0 && stack[1-1] === s[3])
       else if (1 > 0 && stack[0] === s[3]) - sim
       stack.pop()
 
-5a iteração - hasMap[s[i]] - s[4] = "{"
+5a iteração - hashMap[s[i]] - s[4] = "{"
   ele vai adicionar o valor da abertura no stack
       stack.push(hashMap[s[4]]);
       stack = ["{"]
 
-4a iteração - hasMap[s[i]] - s[5] = "}"
+6a iteração - hashMap[s[i]] - s[5] = "}"
       else if (stack.length > 0 && stack[stack.length - 1] === s[i])
       else if (1 > 0 && stack[1-1] === s[5])
       else if (1 > 0 && stack[0] === s[5]) - sim
