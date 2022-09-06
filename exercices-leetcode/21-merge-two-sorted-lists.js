@@ -41,7 +41,7 @@ const list2 = {
 
 var mergeTwoLists = function (l1, l2) {
 
-  let nullNode = new ListNode();
+  let nullNode = new ListNode( );
 
   //lista 3
   let prev = nullNode;
@@ -65,13 +65,16 @@ var mergeTwoLists = function (l1, l2) {
       l1 = l1.next;
     }
 
-    //aqui iremos para o próximo node da lista 3
+    //está removendo o primeiro nó
     prev = prev.next;
   }
 
-  
+
+  // se uma das listas não forem nula, ele pega o nó (ou os nós) e coloca no final do prev
   prev.next = l1 || l2;
   return JSON.stringify(nullNode.next);
 };
 
 console.log(mergeTwoLists(list1, list2));
+
+//https://docs.google.com/presentation/d/18FESY265PdjxuHjs1f6mGT_zb3Iw7uATeOdaw2R7dVQ/edit#slide=id.p
