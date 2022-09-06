@@ -58,7 +58,7 @@ var countBits = function(n) {
       }
     }
     console.log("resultado R:" + somaDosCaracteres);
-    ans2.push(somaDosCaracteres);4
+    ans2.push(somaDosCaracteres);
   }
   return ans2;
 };
