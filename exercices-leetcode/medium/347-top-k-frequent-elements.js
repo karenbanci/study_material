@@ -25,7 +25,7 @@ var topKFrequent = function (nums, k) {
   }
   console.log("completando: " + JSON.stringify(map));
 
-  //aqui estou colocando 
+  //aqui estou colocando
   for (const c in map) {
     bucket[map[c]].push(c);
   }
@@ -52,3 +52,8 @@ const meuMapDeTeste = new Map();
 meuMapDeTeste.set(2, 4);
 
 console.log("resultado:   " + JSON.stringify(meuMapDeTeste.get(2)));
+
+
+/*
+Runtime: 148 ms, faster than 22.89% of JavaScript online submissions for Top K Frequent Elements.
+Memory Usage: 46.2 MB, less than 46.15% of JavaScript online submissions for Top K Frequent Elements. */
