@@ -14,12 +14,12 @@ function subsetA(arr) {
       if (arrayInOrder[i] != arrayInOrder[j]) {
         const comparativeA = arrayInOrder[i] + arrayInOrder[j];
         const comparativeB = sum - comparativeA;
-        console.log(
-          "resultado: " +
-            sum +
-            " - " +
-            (arrayInOrder[i] + arrayInOrder[j] + " = " + comparativeB)
-        );
+        // console.log(
+        //   "resultado: " +
+        //     sum +
+        //     " - " +
+        //     (arrayInOrder[i] + arrayInOrder[j] + " = " + comparativeB)
+        // );
 
         // console.log("subtraido: " + comparativeB);
 
