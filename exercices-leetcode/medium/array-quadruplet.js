@@ -22,6 +22,8 @@ sorted = arr = [0,1, 2, 3, 4, 5, 7, 9]
         (i < j)
 
 sum = 20 ( find two subarry such that their sum equals to `result = s - (arr[i], arr[j])`)
+
+falta terminar
 */
 
 function findArrayQuadruplet(arr, s) {
