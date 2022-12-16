@@ -6,7 +6,7 @@ You want to maximize your profit by choosing a single day to buy one stock and c
 Return the maximum profit you can achieve from this transaction. If you cannot achieve any profit, return 0.
 
 Example 1:
-day:   1 2 3 4 5 6
+day:             0 1 2 3 4 5
 Input: prices = [7,1,5,3,6,4]
 maxProfitStock = 5
 comparação  1 =  7,1 = -6
@@ -14,6 +14,18 @@ comparação  2 =  1,5 = 4
 comparação  3 =  1,3 = 2
 comparação  4 =  1,6 = 5    -- melhor resultado
 comparação  5 =  1,4 = 3
+
+primeiro iteração - encontrar o dia com o menor valor price[i]
+segunda iteração - encontrar o dia com o maior valor price[j]
+
+
+
+
+
+
+
+
+
 
 O(N)
 

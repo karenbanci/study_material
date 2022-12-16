@@ -15,11 +15,17 @@ Output: false
 * @param {string}
 * @return {boolean}
 
+s = "anagram"
+s= ["a","n","a","g","r","a","m"]
+s= ["a","a","a","g","m","n","r"]
+s='aaagmnr'
+
+
 */
-/*
+
 var isAnagram = function(s, t) {
-  console.log("string s:", s);
-  console.log('string t:', t);
+  // console.log("string s:", s);
+  // console.log('string t:', t);
 
   if(s.length === t.length){
     const string1 = s.split('').sort().join('');
@@ -31,15 +37,11 @@ var isAnagram = function(s, t) {
     if(string1 === string2){
       console.log("é um anagrama")
       return true;
-    } else {
-      console.log("sao diferentes");
-      return false;
     }
-
   }
   return false;
 };
-*/
+
 /*
 const a = "anagram";
 const b = "nagaram";
@@ -67,55 +69,55 @@ Comparte if hashmap1 !== hashmap2 -> false
 */
 
 //Made with hash map
-var isAnagram = function (s, t) {
-  const hashmap1 = new Map();
-  const hashmap2 = new Map();
+// var isAnagram = function (s, t) {
+//   const hashmap1 = new Map();
+//   const hashmap2 = new Map();
 
-  if (s.length !== t.length) return false;
+//   if (s.length !== t.length) return false;
 
-  for (let c in s) {
-    //para incrementar +1 no valor a cada chave que se repete
-    // O operador de coalescência nula (??) é um operador lógico que retorna o seu operando do lado direito quando o seu operador do lado esquerdo é null ou undefined. Caso contrário, ele retorna o seu operando do lado esquerdo.
-    // tem dois casos, 1) se a chave não existe ele pega o valor 0 e adiciona o valor 1; 2) se existe ele pega o valor dessa chave e adiciona 1.
-    const value = (hashmap1.get(s[c]) ?? 0) + 1;
-    const key = s[c];
-    hashmap1.set(key, value);
-  }
-  // console.log("map S: ", hashmap1);
+//   for (let c in s) {
+//     //para incrementar +1 no valor a cada chave que se repete
+//     // O operador de coalescência nula (??) é um operador lógico que retorna o seu operando do lado direito quando o seu operador do lado esquerdo é null ou undefined. Caso contrário, ele retorna o seu operando do lado esquerdo.
+//     // tem dois casos, 1) se a chave não existe ele pega o valor 0 e adiciona o valor 1; 2) se existe ele pega o valor dessa chave e adiciona 1.
+//     const value = (hashmap1.get(s[c]) ?? 0) + 1;
+//     const key = s[c];
+//     hashmap1.set(key, value);
+//   }
+//   // console.log("map S: ", hashmap1);
 
-  for (let c in t) {
-    //para incrementar +1 no valor a cada chave que se repete
-    const value = (hashmap2.get(t[c]) ?? 0) + 1;
-    const key = t[c];
-    hashmap2.set(key, value);
-  }
-  // console.log("map T: ", hashmap2);
+//   for (let c in t) {
+//     //para incrementar +1 no valor a cada chave que se repete
+//     const value = (hashmap2.get(t[c]) ?? 0) + 1;
+//     const key = t[c];
+//     hashmap2.set(key, value);
+//   }
+//   // console.log("map T: ", hashmap2);
 
-  // comparação por referência
-  if (compareMaps(hashmap1, hashmap2)) {
-    return true;
-  } else {
-    return false;
-  }
+//   // comparação por referência
+//   if (compareMaps(hashmap1, hashmap2)) {
+//     return true;
+//   } else {
+//     return false;
+//   }
 
 
-};
+// };
 
-function compareMaps(map1, map2) {
-  var testVal;
-  if (map1.size !== map2.size) {
-    return false;
-  }
-  for (var [key, val] of map1) {
-    testVal = map2.get(key);
-    // in cases of an undefined value, make sure the key
-    // actually exists on the object so there are no false positives
-    if (testVal !== val || (testVal === undefined && !map2.has(key))) {
-      return false;
-    }
-  }
-  return true;
-}
+// function compareMaps(map1, map2) {
+//   var testVal;
+//   if (map1.size !== map2.size) {
+//     return false;
+//   }
+//   for (var [key, val] of map1) {
+//     testVal = map2.get(key);
+//     // in cases of an undefined value, make sure the key
+//     // actually exists on the object so there are no false positives
+//     if (testVal !== val || (testVal === undefined && !map2.has(key))) {
+//       return false;
+//     }
+//   }
+//   return true;
+// }
 
 let time = new Date();
 let msAntes = time.getMilliseconds();
