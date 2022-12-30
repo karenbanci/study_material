@@ -1,3 +1,5 @@
+#https://www.codecademy.com/courses/learn-python-3/articles/python-code-challenges-strings
+
 class Business:
   def __init__(self, name, franchises):
     self.name = name
@@ -94,4 +96,3 @@ arepas_place = Franchise("189 Fitzgerald Avenue", [arepas_menu])
 arepa = Business("Take a' Arepa", [arepas_place])
 
 print(arepa.franchises[0].menus[0])
-
