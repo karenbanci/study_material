@@ -176,4 +176,9 @@ print(robot_1.id)
 print(robot_2.id)
 print(robot_3.id)
 
+# Write your code here :)
 
+def adding_squares(x, y):
+  return x**2 + y**2
+
+print(adding_squares(2, 3))
