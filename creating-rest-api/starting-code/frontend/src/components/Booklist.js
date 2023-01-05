@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import CalendarComponent from './calendar';
+import CalendarComponent from './Calendar';
 import Book from './Book';
 import {
   getBooks,
@@ -36,7 +36,7 @@ const BookSchedule = () => {
     }
     fetchData();
   }, []);
-      
+
   // Add a new book to the list
   const onAddNewBook = async () => {
     const newBook = await addNewBook(newBookTitle, newBookStart, newBookEnd);
@@ -52,7 +52,7 @@ const BookSchedule = () => {
   // Map through the array of books and create a list item for them
   const bookTitle = books.map((book) => {
     return (
-      <Book  
+      <Book
       bookId={book.id}
       bookTitle={book.title}
       bookStart={book.start}
@@ -60,7 +60,7 @@ const BookSchedule = () => {
       setBooks={setBooks}
       />
     )
-  
+
   });
 
   return (
