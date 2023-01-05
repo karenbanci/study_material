@@ -24,3 +24,9 @@ export const addNewBook = async (newTitle, newStart, newEnd) {
   const newBook = await response.json();
   return newBook;
 }
+
+export const getBooks = async () => {
+  const response = await fetch(`${API_ENDPOINT}/books`);
+  const books = await response.json();
+  return books;
+}
