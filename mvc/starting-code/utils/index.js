@@ -1,3 +1,6 @@
+/**
+ * Este arquivo abriga todas as funções necessárias para interagir com o controlador a partir das visualizações.
+ */
 exports.fieldValidator = (fields) => {
   const { title, price, category, essential, created_at } = fields;
   if (!title || !price || !category || !essential || !created_at) {

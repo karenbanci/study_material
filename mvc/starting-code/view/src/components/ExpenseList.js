@@ -9,16 +9,19 @@ import {
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 /* import user action function from utils dir
- *
+*/
+import { deleteExpense } from "../utils";
+
+/**
+ * ExpenseList.jsé responsável por preencher uma lista de despesas para uma determinada data. Ele também contém a funcionalidade para lidar com a atualização e exclusão de uma despesa.
  */
 
 const ExpenseList = ({ expenses, setExpenses, setId }) => {
   const [options, setOptions] = useState();
 
   const handleDelete = async (_id) => {
-    /* send user action to controller
-     *
-     */
+    // send user action to controller
+    await deleteExpense(_id);
     setExpenses(expenses.filter((expense) => expense.expense_id !== _id));
   };
 

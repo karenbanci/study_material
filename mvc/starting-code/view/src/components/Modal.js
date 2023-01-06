@@ -1,3 +1,6 @@
+/**
+ * Model.js, é usado para apresentar o componente exportado LogExpense.jscomo um modelo.
+ */
 import * as React from 'react';
 import Backdrop from '@mui/material/Backdrop';
 import Box from '@mui/material/Box';
