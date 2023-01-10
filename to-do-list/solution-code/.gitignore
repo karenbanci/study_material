@@ -1,0 +1,5 @@
+# ignore node_modules in git commit
+node_modules/
+
+#ignore .env file
+.env
