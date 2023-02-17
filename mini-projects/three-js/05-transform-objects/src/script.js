@@ -11,7 +11,7 @@ const scene = new THREE.Scene()
  */
 const group = new THREE.Group();
 group.position.y = 1;
-group.scale.y = 2;
+group.scale.y = 1;
 group.rotation.y = 1;
 scene.add(group);
 
