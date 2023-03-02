@@ -1,3 +1,4 @@
+// import "./style.css"
 import * as THREE from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 
@@ -22,9 +23,55 @@ scene.add(mesh)
  * Sizes
  */
 const sizes = {
-    width: 800,
-    height: 600
+    width: window.innerWidth,
+    height: window.innerHeight
 }
+
+window.addEventListener('resize', () => {
+  // Update sizes
+  sizes.width = window.innerWidth; 
+  sizes.height = window.innerHeight;
+
+  // Update camera
+  camera.aspect = sizes.width / sizes.height;
+  camera.updateProjectionMatrix();
+
+  // Update renderer - irá dar um resize na tela do canvas deixando a
+  // imagem com a mesma proporção
+  renderer.setSize(sizes.width, sizes.height);
+  // Para que a imagem não fique pixelizada
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+})
+
+window.addEventListener('dblclick', () => {
+  const fullscreenElement = document.fullscreenElement || document.webkitFullscreenElement;
+
+  if (!fullscreenElement) {
+    // Para navegadores que suportam o requestFullscreen
+    if(canvas.requestFullscreen) {
+      // Para entrar no modo fullscreen
+      canvas.requestFullscreen();
+    }
+    // Para navegadores que não suportam o requestFullscreen (SAFARI)
+    else if (canvas.webkitRequestFullscreen) {
+      // Para entrar no modo fullscreen
+      canvas.webkitRequestFullscreen();
+    }
+
+  } else {
+
+    if(document.exitFullscreen) {
+      // Para sair do modo fullscreen
+      document.exitFullscreen();
+    }
+    else if(document.webkitExitFullscreen) {
+      // Para sair do modo fullscreen
+      document.webkitExitFullscreen();
+    }
+  }
+
+});
+
 
 /**
  * Camera
@@ -44,7 +91,8 @@ controls.enableDamping = true
 const renderer = new THREE.WebGLRenderer({
     canvas: canvas
 })
-renderer.setSize(sizes.width, sizes.height)
+renderer.setSize(sizes.width, sizes.height);
+
 
 /**
  * Animate
