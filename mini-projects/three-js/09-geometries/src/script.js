@@ -11,10 +11,48 @@ const canvas = document.querySelector('canvas.webgl')
 const scene = new THREE.Scene()
 
 // Object
-const geometry = new THREE.BoxGeometry(1, 1, 1)
-const material = new THREE.MeshBasicMaterial({ color: 0xff0000 })
-const mesh = new THREE.Mesh(geometry, material)
-scene.add(mesh)
+// const geometry = new THREE.BoxGeometry(1, 1, 1, 2, 2, 2)
+const geometry = new THREE.BufferGeometry();
+
+const count = 50;
+// Float32Array é um array de 32 bits
+const positionsArray = new Float32Array(count * 3 * 3);
+
+// iterando sobre o array,
+for(let i = 0; i < count * 3 * 3; i++) {
+  positionsArray[i] = Math.random();
+}
+const positionsAttribute = new THREE.BufferAttribute(positionsArray, 3);
+geometry.setAttribute('position', positionsAttribute);
+
+const material = new THREE.MeshBasicMaterial({
+  color: 0xff0000,
+  // wireframe posso ver os a linha dos triangulos
+  wireframe: true,
+});
+
+const mesh = new THREE.Mesh(geometry, material);
+scene.add(mesh);
+
+
+/*
+//  Floar32Array é um array de 32 bits
+//  usei o Float32Array para criar um array de 9 posições
+const positionsArray = new Float32Array([
+  // x, y, z
+  0,0,0,
+  0,1,0,
+  1,0,0
+])
+
+// BufferGeometry é uma geometria que não é renderizada diretamente
+// 3 é o numero de elementos que cada vertice tem
+const positionsAttribute = new THREE.BufferAttribute(positionsArray, 3)
+
+const geometry = new THREE.BufferGeometry()
+//  string porque é um atributo do bufferGeometry
+geometry.setAttribute('position', positionsAttribute)
+*/
 
 // Sizes
 const sizes = {
