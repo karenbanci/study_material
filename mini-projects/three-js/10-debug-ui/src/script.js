@@ -1,7 +1,26 @@
 import * as THREE from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 import gsap from 'gsap'
+import * as dat from 'dat.gui'
 
+/**
+ * Debug
+*/
+const gui = new dat.GUI()
+
+const parameters = {
+  color: 0xff0000,
+  // spin animation
+  spin: () => {
+    gsap.to(mesh.rotation, { duration: 1, y: mesh.rotation.y + 10 });
+  }
+}
+
+gui.addColor(parameters, "color").onChange(() => {
+  material.color.set(parameters.color);
+});
+
+gui.add(parameters, "spin");
 /**
  * Base
  */
@@ -15,9 +34,26 @@ const scene = new THREE.Scene()
  * Object
  */
 const geometry = new THREE.BoxGeometry(1, 1, 1)
-const material = new THREE.MeshBasicMaterial({ color: 0xff0000 })
+const material = new THREE.MeshBasicMaterial({ color: parameters.color })
 const mesh = new THREE.Mesh(geometry, material)
 scene.add(mesh)
+
+// Debug
+// -3 é o valor mínimo, 3 é o valor máximo é 0.01 é a precisão
+gui.add(mesh.position, "y", ).min(-3).max(3).step(0.01).name("vertical red cube");
+gui.add(mesh.position, "x").min(-3).max(3).step(0.01).name("horizontal red cube");
+gui.add(mesh.position, "z").min(-3).max(3).step(0.01).name("deep red cube");
+
+// deixar o objeto visível ou não (checkbox)
+gui
+  .add(mesh, "visible")
+
+gui
+  .add(material, "wireframe")
+
+
+
+
 
 /**
  * Sizes
