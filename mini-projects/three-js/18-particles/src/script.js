@@ -18,15 +18,63 @@ const scene = new THREE.Scene()
  * Textures
  */
 const textureLoader = new THREE.TextureLoader()
+const particleTexture = textureLoader.load('/textures/particles/2.png')
 
 /**
- * Test cube
+ * Particles
  */
-const cube = new THREE.Mesh(
-    new THREE.BoxGeometry(1, 1, 1),
-    new THREE.MeshBasicMaterial()
+// Geometry
+const particlesGeometry = new THREE.BufferGeometry()
+const count = 2000
+
+const positions = new Float32Array(count * 3)
+const colors = new Float32Array(count * 3)
+
+for(let i = 0; i < count * 3; i++)
+{
+  positions[i] = (Math.random() - 0.5) * 10
+  colors[i] = Math.random()
+}
+
+particlesGeometry.setAttribute(
+  'position',
+  new THREE.BufferAttribute(positions, 3)
 )
-scene.add(cube)
+
+particlesGeometry.setAttribute(
+  "color",
+  new THREE.BufferAttribute(colors, 3)
+);
+
+// Material
+const particlesMaterial = new THREE.PointsMaterial()
+particlesMaterial.size = 0.1
+particlesMaterial.sizeAttenuation = true
+particlesMaterial.color = new THREE.Color("#70D3FF");
+particlesMaterial.transparent = true
+particlesMaterial.alphaMap = particleTexture
+particlesMaterial.depthWrite = false
+particlesMaterial.vertexColors = true
+
+// particlesMaterial.alphaTest = 0.001
+// particlesMaterial.depthTest = false
+
+// I can't see the particles in front of the cube
+// particlesMaterial.blending = THREE.AdditiveBlending
+
+
+
+// Points
+const particles = new THREE.Points(particlesGeometry, particlesMaterial)
+scene.add(particles)
+
+// // Cube
+// const cube = new THREE.Mesh(
+//   new THREE.BoxGeometry(),
+//   new THREE.MeshBasicMaterial()
+// )
+// scene.add(cube)
+
 
 /**
  * Sizes
@@ -80,6 +128,18 @@ const clock = new THREE.Clock()
 const tick = () =>
 {
     const elapsedTime = clock.getElapsedTime()
+
+    // Update particles
+    for(let i = 0; i < count; i++){
+      const i3 = i * 3
+
+      const x = particlesGeometry.attributes.position.array[i3 + 3]
+      particlesGeometry.attributes.position.array[i3 + 1] = Math.sin(elapsedTime + x)
+    }
+    particlesGeometry.attributes.position.needsUpdate = true
+
+    // particles.rotation.y = elapsedTime * 0.1
+    // particles.position.y = Math.sin(elapsedTime * 0.3)
 
     // Update controls
     controls.update()
