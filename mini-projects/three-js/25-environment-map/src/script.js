@@ -1,9 +1,10 @@
 import * as THREE from "three";
-import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
+import { OrbitControls } from "three/addons/controls/OrbitControls.js";
 import * as dat from "lil-gui";
-import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
-import { RGBELoader } from "three/examples/jsm/loaders/RGBELoader.js";
-import { EXRLoader } from "three/examples/jsm/loaders/EXRLoader.js";
+import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
+import { RGBELoader } from "three/addons/loaders/RGBELoader.js";
+import { EXRLoader } from "three/addons/loaders/EXRLoader.js";
+import { GroundProjectedSkybox } from "three/addons/objects/GroundProjectedSkybox.js";
 
 /**
  * Loaders
@@ -30,22 +31,16 @@ const scene = new THREE.Scene();
 /**
  * Update all materials
  */
-const updateAllMaterials = () => {
-  scene.traverse((child) => { // cada filho da cena
-
-    // aqui eu verifico se o filho é uma mesh e se o material é uma instância de MeshStandardMaterial
-    if (child instanceof THREE.Mesh && child.material instanceof THREE.MeshStandardMaterial) {
-
-      // console.log('filho', child );
-      // aqui eu atualizo o material do filho com o environmentMap e a intensidade
-      child.material.envMap = environmentMap;
-      child.material.envMapIntensity = global.envMapIntensity;
-      child.material.needsUpdate = true; // atualiza o material
-
-    }
-
-  })
-};
+const updateAllMaterials = () =>
+{
+    scene.traverse((child) =>
+    {
+        if(child.isMesh && child.material.isMeshStandardMaterial)
+        {
+            child.material.envMapIntensity = global.envMapIntensity
+        }
+    })
+}
 
 /**
  * Environment map
@@ -98,13 +93,74 @@ gui.add(global, 'envMapIntensity').min(0).max(10).step(0.001).onChange(updateAll
 // scene.environment = environmentMap;
 
 
+// Ground projected skybox - aqui vou tirar o objeto flutuando
+// rgbeLoader.load("/environmentMaps/2/2k.hdr", (environmentMap) => {
+
+//   environmentMap.mapping = THREE.EquirectangularReflectionMapping;
+//   scene.environment = environmentMap;
+
+//   // skybox
+//   const skybox = new GroundProjectedSkybox(environmentMap, 32);
+//   skybox.radius = 120;
+//   skybox.height = 11;
+//   skybox.scale.setScalar(50);
+//   scene.add(skybox);
+
+//   gui.add(skybox, 'radius', 1, 200, 0.1).name('skybox radius');
+//   gui.add(skybox, "height", 1, 200, 0.1).name("skybox height");
+// })
+
+/**
+ * Real time environment map
+ */
+const environmentMap = textureLoader.load(
+  "/environmentMaps/blockadesLabsSkybox/interior_views_cozy_wood_cabin_with_cauldron_and_p.jpg"
+);
+environmentMap.mapping = THREE.EquirectangularReflectionMapping;
+environmentMap.colorSpace = THREE.SRGBColorSpace;
+
+scene.background = environmentMap;
+
+// Holy donut
+const holyDonut = new THREE.Mesh(
+  new THREE.TorusGeometry(8, 0.5),
+  new THREE.MeshBasicMaterial({
+    color: new THREE.Color(10, 4, 2), // deixa a luz no tom mais quente
+  })
+);
+holyDonut.layers.enable(1); // aqui nos vemos o reflexo do donuts na cena
+holyDonut.position.y = 4;
+scene.add(holyDonut);
+
+// Cube render target
+const cubeRenderTarget = new THREE.WebGLCubeRenderTarget(256, {
+
+  // type: THREE.FloatType, // realistic lighting - float use 32 bits
+  type: THREE.HalfFloatType, // realistic lighting - halffloat use 16 bits
+});
+
+scene.environment = cubeRenderTarget.texture;
+
+// cube camera
+const cubeCamera = new THREE.CubeCamera(0.1, 100, cubeRenderTarget);
+cubeCamera.layers.set(1); // nao podemos ver o reflexo do cubo na cena, entao colocamos ele em uma layer diferente
+
+/**
+ * To change the layers of an object or a camera, we can use 3 methods
+ *
+ * object.layers.enable(1) // enable layer 1 - add layer to the object
+ * object.layers.disable(1) // disable layer 1 - remove layer from the object
+ * object.layers.set(1) // set layer 1 - remove all layers and add only layer 1
+ */
+
+
 /**
  * Torus Knot
  */
 const torusKnot = new THREE.Mesh(
   new THREE.TorusKnotGeometry(1, 0.4, 100, 16),
   new THREE.MeshStandardMaterial({
-    roughness: 0.3,
+    roughness: 0,
     metalness: 1,
     color: 0xaaaaaa,
   })
@@ -114,6 +170,8 @@ const torusKnot = new THREE.Mesh(
 torusKnot.position.y = 4;
 torusKnot.position.x = -4;
 scene.add(torusKnot);
+
+
 
 /**
  * Models
@@ -182,6 +240,13 @@ const tick = () => {
   // Time
   const elapsedTime = clock.getElapsedTime();
 
+  // real time environment map
+  if (holyDonut){
+    holyDonut.rotation.x = Math.sin(elapsedTime) * 2;
+
+    cubeCamera.update(renderer, scene); // update each frame
+  }
+
   // Update controls
   controls.update();
 
@@ -193,3 +258,4 @@ const tick = () => {
 };
 
 tick();
+
