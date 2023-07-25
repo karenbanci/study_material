@@ -1,0 +1,1 @@
+{"__Dog__": {"_name": "Fido", "_age": 10, "_tricks": ["Sit", "Stay", "Rol Over", "Type"]}}
