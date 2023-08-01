@@ -1,6 +1,10 @@
 import * as THREE from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 import * as dat from 'lil-gui'
+import testVertexShader from './shaders/test/vertex.glsl';
+import testFragmentShader from './shaders/test/fragment.glsl';
+
+// console.log(testVertexShader) - just confirm if it has already been imported
 
 /**
  * Base
@@ -18,6 +22,7 @@ const scene = new THREE.Scene()
  * Textures
  */
 const textureLoader = new THREE.TextureLoader()
+const flagTexture = textureLoader.load("/textures/flag-brazil.jpg");
 
 /**
  * Test mesh
@@ -25,8 +30,34 @@ const textureLoader = new THREE.TextureLoader()
 // Geometry
 const geometry = new THREE.PlaneGeometry(1, 1, 32, 32)
 
-// Material
-const material = new THREE.MeshBasicMaterial()
+// create randoms attribute
+const count = geometry.attributes.position.count
+const randoms = new Float32Array(count)
+
+for (let i = 0; i < count; i++) {
+  randoms[i] = Math.random()
+}
+// console.log(randoms)
+
+// how much randoms we have - aRandom means "a" for attribute
+geometry.setAttribute('aRandom', new THREE.BufferAttribute(randoms, 1))
+
+// Material - pay attention it is back quotes
+const material = new THREE.ShaderMaterial({
+  vertexShader: testVertexShader,
+  fragmentShader: testFragmentShader,
+  uniforms:
+  {
+    uFrequency: { value: new THREE.Vector2(10, 2.5) },
+    uTime: { value: 0 },
+    uColor: { value: new THREE.Color('orange') },
+    uTexture: { value: flagTexture }
+  }
+  // common properties like: wireframe, transparent, side or flatShading
+});
+
+gui.add(material.uniforms.uFrequency.value, 'x').min(0).max(20).step(0.01).name('frequencyX')
+gui.add(material.uniforms.uFrequency.value, 'y').min(0).max(20).step(0.01).name('frequencyY')
 
 // Mesh
 const mesh = new THREE.Mesh(geometry, material)
@@ -84,6 +115,9 @@ const clock = new THREE.Clock()
 const tick = () =>
 {
     const elapsedTime = clock.getElapsedTime()
+
+    // Update material
+    material.uniforms.uTime.value = elapsedTime
 
     // Update controls
     controls.update()
