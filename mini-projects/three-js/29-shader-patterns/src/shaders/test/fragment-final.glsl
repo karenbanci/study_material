@@ -15,7 +15,7 @@ vec2 rotate(vec2 uv, float rotation, vec2 mid)
     );
 }
 
-//	Classic Perlin 2D Noise
+//	Classic Perlin 2D Noise 
 //	by Stefan Gustavson
 //
 vec4 permute(vec4 x)
