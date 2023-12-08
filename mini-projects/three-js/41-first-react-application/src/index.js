@@ -5,7 +5,30 @@ import App from "./App.js";
 const root = createRoot(document.querySelector("#root"));
 
 root.render(
-  <>
-    <App />
-  </>
+  <div>
+    <App
+      clickersCount={3}
+      children={
+        <>
+          <h1>Primeiro</h1>
+        </>
+      }
+    />
+    {/* <App
+      clickersCount={3}
+      children={
+        <>
+          <h1>Segundo</h1>
+        </>
+      }
+    />
+    <App
+      clickersCount={3}
+      children={
+        <>
+          <h1>Terceiro</h1>
+        </>
+      }
+    /> */}
+  </div>
 );
