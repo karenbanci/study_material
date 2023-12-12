@@ -1,3 +1,4 @@
+# pylint: disable=protected-access
 """
 Final Project: Doubly Linked List Test
 """
@@ -9,7 +10,11 @@ from doubly_ll import *
 
 
 class LinkedListTestCase(unittest.TestCase):
+    """
+    Test cases for the DoublyLinkedList class
+    """
     def testInit(self):
+
         dll = DoublyLinkedList()
         self.assertEqual(dll._head, None)
         self.assertEqual(dll._tail, None)

@@ -112,6 +112,7 @@ class DoublyLinkedList:
     def add_to_tail(self, data):  # O(1) - constant time
         """
         Add a new node to the tail of the list
+        @param data: the data to be added to the tail
         """
         node = DoublyLinkedListNode(data)
         if self._tail is not None:
@@ -125,6 +126,9 @@ class DoublyLinkedList:
     def insert(self, index, data):
         """
         Insert a new node at a specific index
+        @param index: the index to insert the new node
+        @param data: the data to be inserted
+
         """
         try:
             if index == 0:
