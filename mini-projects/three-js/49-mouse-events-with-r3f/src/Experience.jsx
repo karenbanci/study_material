@@ -1,37 +1,93 @@
-import { useFrame } from '@react-three/fiber'
-import { OrbitControls } from '@react-three/drei'
-import { useRef } from 'react'
+import { useFrame } from "@react-three/fiber";
+import { OrbitControls, useGLTF, meshBounds } from "@react-three/drei";
+import { useRef } from "react";
 
-export default function Experience()
-{
-    const cube = useRef()
-    
-    useFrame((state, delta) =>
-    {
-        cube.current.rotation.y += delta * 0.2
-    })
+export default function Experience() {
+  const cube = useRef();
 
-    return <>
+  useFrame((state, delta) => {
+    cube.current.rotation.y += delta * 0.2;
+  });
 
-        <OrbitControls makeDefault />
+  const eventHandler = (event) => {
+    cube.current.material.color.set(`hsl(${Math.random() * 360}, 100%, 50%)`);
+  };
 
-        <directionalLight position={ [ 1, 2, 3 ] } intensity={ 4.5 } />
-        <ambientLight intensity={ 1.5 } />
+  const hamburger = useGLTF("./hamburger.glb");
+  console.log(hamburger);
 
-        <mesh position-x={ - 2 }>
-            <sphereGeometry />
-            <meshStandardMaterial color="orange" />
-        </mesh>
+  return (
+    <>
+      <OrbitControls makeDefault />
 
-        <mesh ref={ cube } position-x={ 2 } scale={ 1.5 }>
-            <boxGeometry />
-            <meshStandardMaterial color="mediumpurple" />
-        </mesh>
+      <directionalLight position={[1, 2, 3]} intensity={4.5} />
+      <ambientLight intensity={1.5} />
 
-        <mesh position-y={ - 1 } rotation-x={ - Math.PI * 0.5 } scale={ 10 }>
-            <planeGeometry />
-            <meshStandardMaterial color="greenyellow" />
-        </mesh>
+      <mesh
+        position-x={-2}
+        onClick={(event) => {
+          // avoid the event cube when I click the sphere (the event will not propagate)
+          event.stopPropagation();
+        }}
+        onPointerEnter={(event) => {
+          // avoid the event cube when I click the sphere (the event will not propagate)
+          event.stopPropagation();
+        }}
+        onPointerLeave={(event) => {
+          // avoid the event cube when I click the sphere (the event will not propagate)
+          event.stopPropagation();
+        }}
+      >
+        <sphereGeometry />
+        <meshStandardMaterial color="orange" />
+      </mesh>
 
+      <mesh
+        ref={cube}
+        raycast={meshBounds}
+        position-x={2}
+        scale={1.5}
+        onClick={eventHandler}
+        onPointerEnter={() => {
+          document.body.style.cursor = "pointer";
+        }}
+        onPointerLeave={() => {
+          document.body.style.cursor = "default";
+        }}
+      >
+        <boxGeometry />
+        <meshStandardMaterial color="mediumpurple" />
+      </mesh>
+
+      <mesh position-y={-1} rotation-x={-Math.PI * 0.5} scale={10}>
+        <planeGeometry />
+        <meshStandardMaterial color="greenyellow" />
+      </mesh>
+
+      <primitive
+        object={hamburger.scene}
+        scale={0.25}
+        position-y={0.5}
+        onClick={(event) => {
+          console.log(event.object.name);
+          event.stopPropagation();
+        }}
+      />
     </>
+  );
 }
+
+/**
+ * Avoid events that need to be tested on each frame;
+ * it is for performance reasons.
+ *
+ * onPointerOver
+ * onPointerEnter
+ * onPointerOut
+ * onPointerMove
+ * onPointerLeave
+ *
+ * meshBounds will create a theorical sphere around the mesh (called bounding sphere)
+ * and the pointer events will be tested on that sphere instead of testing the
+ * geometry of the mesh.
+ */
