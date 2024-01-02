@@ -2,6 +2,7 @@ import { RigidBody, useRapier } from "@react-three/rapier";
 import { useFrame } from "@react-three/fiber";
 import { useKeyboardControls } from "@react-three/drei";
 import { useRef, useEffect, useState } from "react";
+import useGame from "./stores/useGame.jsx";
 import * as THREE from "three";
 // import * as RAPIER from "@dimforge/rapier3d-compat";
 // console.log(RAPIER);
@@ -17,6 +18,11 @@ export default function Player() {
   );
   const [smoothedCameraTarget] = useState(() => new THREE.Vector3());
 
+  const start = useGame((state) => state.start);
+  const end = useGame((state) => state.end);
+  const restart = useGame((state) => state.restart);
+  const blocksCount = useGame((state) => state.blocksCount);
+
   const jump = () => {
     const origin = body.current.translation();
     origin.y -= 0.31;
@@ -31,7 +37,25 @@ export default function Player() {
     }
   };
 
+  const reset = () => {
+    // console.log("reset");
+    body.current.setTranslation({ x: 0, y: 1, z: 0 });
+    body.current.setLinvel({ x: 0, y: 0, z: 0 });
+    body.current.setAngvel({ x: 0, y: 0, z: 0 });
+  };
+
+  // this effect will run only when the keys are pressed
   useEffect(() => {
+    const unsubscribeReset = useGame.subscribe(
+      (state) => state.phase,
+      (value) => {
+        // console.log("mudando", value);
+        if (value === "ready") {
+          reset();
+        }
+      }
+    );
+
     const unsubscribeJump = subscribeKeys(
       // function to call when jump is pressed
       (state) => state.jump,
@@ -42,8 +66,14 @@ export default function Player() {
       }
     );
 
+    const unsubscribeAny = subscribeKeys(() => {
+      start();
+    });
+
     return () => {
+      unsubscribeReset();
       unsubscribeJump();
+      unsubscribeAny();
     };
   }, []);
 
@@ -102,6 +132,15 @@ export default function Player() {
 
     state.camera.position.copy(cameraPosition);
     state.camera.lookAt(cameraTarget);
+
+    // Phases - update the blocks count
+    if (bodyPosition.z < -(blocksCount * 3 + 2)) {
+      end();
+    }
+
+    if (bodyPosition.y < -4) {
+      restart();
+    }
   });
 
   return (
