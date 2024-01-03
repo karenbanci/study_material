@@ -134,7 +134,7 @@ export default function Player() {
     state.camera.lookAt(cameraTarget);
 
     // Phases - update the blocks count
-    if (bodyPosition.z < -(blocksCount * 3 + 2)) {
+    if (bodyPosition.z < -(blocksCount * 4 + 2)) {
       end();
     }
 
