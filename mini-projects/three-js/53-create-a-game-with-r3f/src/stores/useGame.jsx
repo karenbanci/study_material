@@ -20,7 +20,7 @@ export default create(
         set((state) => {
           if (state.phase === "ready") {
             // start time will be saved when the phase changes to playing
-            return { phase: "playing", starttime: Date.now() };
+            return { phase: "playing", startTime: Date.now() };
           }
           return {};
         });

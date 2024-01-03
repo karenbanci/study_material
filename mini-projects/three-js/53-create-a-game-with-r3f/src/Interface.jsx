@@ -21,7 +21,7 @@ export default function Interface() {
   useEffect(() => {
     const unsubscribeEffect = addEffect(() => {
       const state = useGame.getState();
-      // console.log(state.phase);
+      console.log(state);
 
       let elapsedTime = 0;
 
@@ -35,6 +35,7 @@ export default function Interface() {
 
       // convert to seconds
       elapsedTime /= 1000;
+      console.log(elapsedTime);
       elapsedTime = elapsedTime.toFixed(2);
       if (time.current) time.current.textContent = elapsedTime;
 
