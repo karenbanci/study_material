@@ -1,0 +1,8 @@
+## run server
+
+python3 manage.py makemigrations
+python3 manage.py runserver
+
+if No module named 'django'
+python3 -m pip install django
+python3 -m pip install Pillow

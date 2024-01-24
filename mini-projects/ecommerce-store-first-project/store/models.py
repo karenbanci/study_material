@@ -7,6 +7,7 @@ class Category(models.Model):
     slug = models.SlugField(max_length=255, unique=True)
 
     class Meta:
+        # this will be the name of the table in the database
         verbose_name_plural = "categories"
 
     def __str__(self):
@@ -16,7 +17,8 @@ class Category(models.Model):
 class Product(models.Model):
     category = models.ForeignKey(Category, related_name="product", on_delete=models.CASCADE)
     created_by = models.ForeignKey(User, related_name="product_creator", on_delete=models.CASCADE)
-    title = models.CharField(max_length=255, default="admin")
+    title = models.CharField(max_length=255)
+    author = models.CharField(max_length=255, default="admin")
     description = models.TextField(blank=True)
     image = models.ImageField(upload_to="images/")
     slug = models.SlugField(max_length=255)
@@ -34,4 +36,5 @@ class Product(models.Model):
         ordering = ("-created",)
 
     def __str__(self):
+        # default string representation of the model
         return self.title
