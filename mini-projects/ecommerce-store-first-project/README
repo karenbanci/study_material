@@ -1,8 +1,18 @@
 ## run server
 
 python3 manage.py makemigrations
+python3 manage.py migrate
+
 python3 manage.py runserver
 
 if No module named 'django'
 python3 -m pip install django
 python3 -m pip install Pillow
+
+to create super user
+python3 manage.py createsuperuser
+username:
+password:
+
+current environment by listing installed packages:
+python3 -m pip list

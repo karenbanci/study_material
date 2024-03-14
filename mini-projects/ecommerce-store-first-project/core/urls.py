@@ -15,7 +15,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import re_path as path
 
 # isso serve para que o django consiga encontrar as imagens dentro do diretório
 from django.conf import settings
