@@ -1,3 +1,4 @@
+import * as THREE from "three";
 import { useEffect } from "react";
 import { useThree } from "react-three-fiber";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
@@ -13,7 +14,7 @@ function Model() {
     loader.setDRACOLoader(dracoLoader);
 
     loader.load(
-      "/model3d.glb", // Adjust the path as necessary
+      "/portal.glb", // Adjust the path as necessary
       (gltf) => {
         scene.add(gltf.scene); // Directly add the loaded scene to the existing scene
       },
@@ -25,7 +26,7 @@ function Model() {
 
     // Optionally, return a cleanup function if you want to remove the model when the component unmounts
     return () => {
-      /* Perform any cleanup if necessary */
+      scene.remove(scene.children[3]);
     };
   }, [scene]); // Empty dependency array means this effect runs once on mount
 
