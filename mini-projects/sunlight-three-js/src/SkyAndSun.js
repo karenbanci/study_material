@@ -1,23 +1,20 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useMemo } from "react";
+import * as THREE from "three";
 import { useThree } from "react-three-fiber";
 import { Sky } from "three/examples/jsm/objects/Sky.js";
 import CalcSunPosition from "./CalcSunPosition";
+// import OrbitControls from "./OrbitControls";
+
+// import { useControls } from "leva";
 
 console.log("CalcSunPosition", CalcSunPosition());
 
-function SkyAndSun({
-  turbidity,
-  rayleigh,
-  mieCoefficient,
-  mieDirectionalG,
-  sunPosition,
-}) {
+function SkyAndSun({ turbidity, rayleigh, mieCoefficient, mieDirectionalG }) {
   const { scene } = useThree(); // Access the Three.js scene object
-  const sky = useRef();
+  // const sky = useRef();
 
-  // Assuming CalcSunPosition returns an array [x, y, z] for the sun's position
-  // const sunPosition = CalcSunPosition();
-  // console.log("Sun Position", sunPosition);
+  // const sky = new Sky();
+  const sky = useMemo(() => new Sky(), []);
 
   useEffect(() => {
     // Ensure the sky object is only added once
@@ -27,29 +24,23 @@ function SkyAndSun({
       scene.add(sky.current);
     }
 
+    const sunPosition = CalcSunPosition();
+    const sun = new THREE.Vector3(...sunPosition);
+    console.log("Sun Position", sun);
+
     const uniforms = sky.current.material.uniforms;
     uniforms["turbidity"].value = turbidity;
     uniforms["rayleigh"].value = rayleigh;
     uniforms["mieCoefficient"].value = mieCoefficient;
     uniforms["mieDirectionalG"].value = mieDirectionalG;
-    uniforms["sunPosition"].value.set(...sunPosition);
+    uniforms["sunPosition"].value = sun;
 
     // Clean up: Remove the sky from the scene when the component unmounts
     return () => {
       if (sky.current) scene.remove(sky.current);
     };
-  }, [
-    scene,
-    turbidity,
-    rayleigh,
-    mieCoefficient,
-    mieDirectionalG,
-    sunPosition,
-  ]); // Add sunPosition to dependency array
+  }, [sky, scene, turbidity, rayleigh, mieCoefficient, mieDirectionalG]);
 
-  //mrdoob/three.js/examples/webgl_shaders_sky.html
-
-  // No need to return anything since the sky is being added directly to the scene
   return null;
 }
 

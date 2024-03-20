@@ -9,24 +9,24 @@ const CalcSunPosition = () => {
   const math = create(all, {});
 
   const SunCalc = require("suncalc");
-  console.log("Calculo do SOL", SunCalc);
+  // console.log("Calculo do SOL", SunCalc);
 
   // get today's sunlight times for London
   const times = SunCalc.getTimes(new Date(), 51.5, -0.1);
 
   // get position of the sun (azimuth and altitude) at today's sunrise
   const sunrisePos = SunCalc.getPosition(times.sunrise, 51.5, -0.1);
-  console.log("Sunrise ------------ ", sunrisePos);
+  // console.log("Sunrise ------------ ", sunrisePos);
 
   // get sunrise azimuth in degrees
   const sunriseAzimuth = (sunrisePos.azimuth * 180) / Math.PI;
-  console.log("Sunrise Azimuth", sunriseAzimuth);
+  // console.log("Sunrise Azimuth", sunriseAzimuth);
 
   const altitude = sunrisePos.altitude;
-  console.log("Altitude", altitude);
+  // console.log("Altitude", altitude);
 
   const azimuth = sunrisePos.azimuth;
-  console.log("Azimuth", azimuth);
+  // console.log("Azimuth", azimuth);
 
   // azimuth = -1.528729280365006;
   // altitude = -0.012671868724339556;
