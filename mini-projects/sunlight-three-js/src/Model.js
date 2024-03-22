@@ -1,37 +1,48 @@
-import * as THREE from "three";
-import { useEffect } from "react";
-import { useThree } from "react-three-fiber";
+// import * as THREE from "three";
+import { useEffect, useState } from "react";
+// import { useThree } from "react-three-fiber";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import { DRACOLoader } from "three/examples/jsm/loaders/DRACOLoader";
+import React from "react";
 
 function Model() {
-  const { scene } = useThree(); // Use the useThree hook to access the three.js scene
+  // const { scene } = useThree(); // Use the useThree hook to access the three.js scene
+
+  const [scene, setScene] = useState(null);
+  const model = "/portal.glb";
+
+  const createScene = (gltfScene) => {
+    // Config Scale
+    gltfScene.scale.set(2, 2, 2);
+    gltfScene.scale.multiplyScalar(100);
+
+    return gltfScene;
+  };
 
   useEffect(() => {
-    const loader = new GLTFLoader();
-    const dracoLoader = new DRACOLoader();
-    dracoLoader.setDecoderPath("./draco/"); // Adjust path to Draco decoder
-    loader.setDRACOLoader(dracoLoader);
+    if (model) {
+      const loader = new GLTFLoader();
+      const dracoLoader = new DRACOLoader();
+      dracoLoader.setDecoderPath("./draco/");
+      loader.setDRACOLoader(dracoLoader);
 
-    loader.load(
-      "/portal.glb", // Adjust the path as necessary
-      (gltf) => {
-        scene.add(gltf.scene); // Directly add the loaded scene to the existing scene
-      },
-      undefined,
-      (error) => {
-        console.error("An error happened", error);
-      }
-    );
+      loader.load(
+        model,
+        (gltf) => {
+          // setModel(gltf.scene);
 
-    // Optionally, return a cleanup function if you want to remove the model when the component unmounts
-    return () => {
-      scene.remove(scene.children[3]);
-    };
-  }, [scene]); // Empty dependency array means this effect runs once on mount
+          setScene(createScene(gltf.scene));
+        },
+        undefined,
+        (error) => {
+          console.error(error);
+        }
+      );
+    }
+  }, [model]);
 
-  // No need to return anything since we're directly manipulating the scene
-  return null;
+  if (!scene) return null;
+  return <primitive object={scene} />;
 }
 
 export default Model;
