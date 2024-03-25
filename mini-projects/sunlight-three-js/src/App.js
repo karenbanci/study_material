@@ -13,11 +13,15 @@ function App() {
   //   height: 100vh;
   //   /* background-color: black; */
   // `;
+  console.log("App JS OK");
 
   return (
     // <SceneConainer>
     // </SceneConainer>
-    <Scene></Scene>
+    <>
+      App JS OK
+      <Scene />
+    </>
   );
 }
 
