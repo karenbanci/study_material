@@ -7,7 +7,7 @@ import CalcSunPosition from "./CalcSunPosition";
 
 // import { useControls } from "leva";
 
-console.log("CalcSunPosition", CalcSunPosition());
+console.log("CalcSunPosition linha 10 SkyANDSun", CalcSunPosition());
 
 function SkyAndSun() {
   const { scene } = useThree(); // Access the Three.js scene object
@@ -24,6 +24,7 @@ function SkyAndSun() {
   };
   // const sky = new Sky();
   const sky = useMemo(() => new Sky(), []);
+  // const sky = new Sky();
 
   useEffect(() => {
     // Ensure the sky object is only added once
@@ -36,18 +37,18 @@ function SkyAndSun() {
 
     const sunPosition = CalcSunPosition();
     // const sun = new THREE.Vector3();
-    const sun = new THREE.Vector3(...sunPosition);
-    console.log("Sun Position", sun);
+    let sun = new THREE.Vector3(sunPosition[0], sunPosition[1], sunPosition[2]);
+    console.log("linha 40 Sun Position", sun);
 
     const renderer = new THREE.WebGLRenderer();
 
-    const camera = new THREE.PerspectiveCamera(
-      60,
-      window.innerWidth / window.innerHeight,
-      100,
-      2000000
-    );
-    camera.position.set(0, 100, 2000);
+    // const camera = new THREE.PerspectiveCamera(
+    //   60,
+    //   window.innerWidth / window.innerHeight,
+    //   100,
+    //   2000000
+    // );
+    // camera.position.set(0, 100, 2000);
 
     const effectController = {
       turbidity: 10,
@@ -74,7 +75,8 @@ function SkyAndSun() {
     console.log("linha 64", sun.setFromSphericalCoords(1, phi, theta));
 
     renderer.toneMappingExposure = effectController.exposure;
-    renderer.render(scene, camera);
+    // renderer.render(scene);
+    // renderer.render(scene, camera);
 
     // Clean up: Remove the sky from the scene when the component unmounts
     return () => {

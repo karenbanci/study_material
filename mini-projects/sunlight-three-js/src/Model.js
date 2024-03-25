@@ -1,4 +1,3 @@
-// import * as THREE from "three";
 import { useEffect, useState } from "react";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import { DRACOLoader } from "three/examples/jsm/loaders/DRACOLoader";
@@ -8,7 +7,8 @@ function Model() {
   // const { scene } = useThree(); // Use the useThree hook to access the three.js scene
 
   const [scene, setScene] = useState(null);
-  const model = "/portal.glb";
+  const model = "/model3d.glb";
+  // const model = "/portal.glb";
 
   const createScene = (gltfScene) => {
     // Config Scale
@@ -28,8 +28,6 @@ function Model() {
       loader.load(
         model,
         (gltf) => {
-          // setModel(gltf.scene);
-
           setScene(createScene(gltf.scene));
         },
         undefined,
@@ -41,7 +39,7 @@ function Model() {
   }, [model]);
 
   if (!scene) return null;
-  return <primitive object={scene} />;
+  return <primitive object={scene} receiveShadow />;
 }
 
 export default Model;
