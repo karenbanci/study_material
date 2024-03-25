@@ -6,6 +6,7 @@
     "leva": "^0.9.35",
     "mathjs": "^12.4.1",
     "react": "^16.12.0",
+    "drei": "1.5.7",
     "react-dom": "^16.12.0",
     "react-scripts": "5.0.1",
     "react-three-fiber": "^4.0.20",
