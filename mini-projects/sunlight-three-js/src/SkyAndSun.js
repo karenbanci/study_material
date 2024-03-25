@@ -9,10 +9,19 @@ import CalcSunPosition from "./CalcSunPosition";
 
 console.log("CalcSunPosition", CalcSunPosition());
 
-function SkyAndSun({ turbidity, rayleigh, mieCoefficient, mieDirectionalG }) {
+function SkyAndSun() {
   const { scene } = useThree(); // Access the Three.js scene object
   // const sky = useRef();
 
+  const sunProperties = {
+    turbidity: 10,
+    rayleigh: 3,
+    mieCoefficient: 0.005,
+    mieDirectionalG: 0.7,
+    elevation: 2,
+    azimuth: 180,
+    // exposure: renderer.toneMappingExposure,
+  };
   // const sky = new Sky();
   const sky = useMemo(() => new Sky(), []);
 
@@ -20,26 +29,58 @@ function SkyAndSun({ turbidity, rayleigh, mieCoefficient, mieDirectionalG }) {
     // Ensure the sky object is only added once
     if (!sky.current) {
       sky.current = new Sky();
+      console.log("Sky", sky.current);
       sky.current.scale.setScalar(450000);
       scene.add(sky.current);
     }
 
     const sunPosition = CalcSunPosition();
+    // const sun = new THREE.Vector3();
     const sun = new THREE.Vector3(...sunPosition);
     console.log("Sun Position", sun);
 
-    const uniforms = sky.current.material.uniforms;
-    uniforms["turbidity"].value = turbidity;
-    uniforms["rayleigh"].value = rayleigh;
-    uniforms["mieCoefficient"].value = mieCoefficient;
-    uniforms["mieDirectionalG"].value = mieDirectionalG;
-    uniforms["sunPosition"].value = sun;
+    const renderer = new THREE.WebGLRenderer();
+
+    const camera = new THREE.PerspectiveCamera(
+      60,
+      window.innerWidth / window.innerHeight,
+      100,
+      2000000
+    );
+    camera.position.set(0, 100, 2000);
+
+    const effectController = {
+      turbidity: 10,
+      rayleigh: 3,
+      mieCoefficient: 0.005,
+      mieDirectionalG: 0.7,
+      elevation: 2,
+      azimuth: 180,
+      exposure: renderer.toneMappingExposure,
+    };
+
+    const uniforms = sky.material.uniforms;
+    uniforms["turbidity"].value = effectController.turbidity;
+    uniforms["rayleigh"].value = effectController.rayleigh;
+    uniforms["mieCoefficient"].value = effectController.mieCoefficient;
+    uniforms["mieDirectionalG"].value = effectController.mieDirectionalG;
+    uniforms["sunPosition"].value.copy(sun);
+
+    const phi = THREE.MathUtils.degToRad(90 - effectController.elevation);
+    console.log("phi", phi);
+    const theta = THREE.MathUtils.degToRad(effectController.azimuth);
+    console.log("theta", theta);
+
+    console.log("linha 64", sun.setFromSphericalCoords(1, phi, theta));
+
+    renderer.toneMappingExposure = effectController.exposure;
+    renderer.render(scene, camera);
 
     // Clean up: Remove the sky from the scene when the component unmounts
     return () => {
       if (sky.current) scene.remove(sky.current);
     };
-  }, [sky, scene, turbidity, rayleigh, mieCoefficient, mieDirectionalG]);
+  }, [sky, scene]);
 
   return null;
 }
