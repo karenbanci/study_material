@@ -1,6 +1,5 @@
 // import * as THREE from "three";
 import { useEffect, useState } from "react";
-// import { useThree } from "react-three-fiber";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import { DRACOLoader } from "three/examples/jsm/loaders/DRACOLoader";
 import React from "react";
@@ -13,8 +12,8 @@ function Model() {
 
   const createScene = (gltfScene) => {
     // Config Scale
-    gltfScene.scale.set(2, 2, 2);
-    gltfScene.scale.multiplyScalar(100);
+    gltfScene.scale.set(1.5, 1.5, 1.5);
+    gltfScene.scale.multiplyScalar(10);
 
     return gltfScene;
   };
