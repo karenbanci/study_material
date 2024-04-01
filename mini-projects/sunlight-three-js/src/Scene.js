@@ -2,33 +2,32 @@ import Model from "./Model";
 import * as THREE from "three";
 // import SkyAndSun from "./SkyAndSun";
 import { Sky, Plane } from "drei";
-import React, { Suspense } from "react";
+import { useHelper } from "drei/misc/useHelper";
+import React, { Suspense, useRef } from "react";
 import { Canvas } from "react-three-fiber";
 import OrbitControls from "./OrbitControls";
+import { DirectionalLightHelper } from "three/src/helpers/DirectionalLightHelper";
+
+/*
+reference to get the sunlight position:
+https://www.suncalc.org
+*/
 
 function Scene() {
-  function calcPosFromRadians(
-    inclination,
-    azimuth,
-    vector = new THREE.Vector3()
-  ) {
+  function calcPosFromRadians(inclination, azimuth) {
+    const array = [];
     // console inclination and azimuth
     console.log("calcPosFromRadians", inclination, azimuth);
-    // const theta = Math.PI * (inclination - 0.5);
-    // const phi = 2 * Math.PI * (azimuth - 0.5);
 
-    // vector.x = Math.cos(phi) * 1;
-    // vector.y = Math.sin(theta) * 1;
-    // vector.z = Math.sin(phi) * 1;
+    const radius = 100;
 
-    const radius = 1;
-    vector.x = radius * Math.cos(azimuth) * Math.cos(inclination);
-    vector.y = radius * Math.cos(azimuth) * Math.sin(inclination);
-    vector.z = radius * Math.sin(azimuth);
+    array.push(radius * Math.cos(azimuth) * Math.cos(inclination));
+    array.push(radius * Math.sin(inclination));
+    array.push(radius * Math.sin(azimuth));
 
-    console.log("calcPosFromAngles", vector);
+    console.log("calcPosFromAngles", array);
 
-    return vector;
+    return array;
   }
 
   function calcPosFromDegrees(inclination, azimuth) {
@@ -38,21 +37,34 @@ function Scene() {
     );
   }
 
-  // TODO: TEMOS QUE ARRUMAR A POSIÇAO, NAO ESTÁ FUNCIONANDO CORRETAMENTE OS VALORES
-  // altitud and azimuth
-  const calc = calcPosFromDegrees(0, 270);
-  // 0
-  // Vector3 {x: 0.62968172529648, y: 0, z: 0.7768532196159377}
-  // 0 (-0.5)
-  // calcPosFromAngles Vector3 {x: -0.6296817252964799, y: -1, z: -0.7768532196159378}
+  // inclination and azimuth
+  // const calc = calcPosFromDegrees(1.1, 88.35); // 7 am NY time
+  // const calc = calcPosFromDegrees(42.3, 136.67); // 11 am NY time
+  // const calc = calcPosFromDegrees(48.98, 202.38); // 2 pm NY time
+  // const calc = calcPosFromDegrees(34.19, 237.83); // 4 pm NY time
+  const calc = calcPosFromDegrees(13.01, 261.19); // 6 pm NY time
 
-  // 10
-  // Vector3 {x: 0.62968172529648, y: 0.5212468736421765, z: 0.7768532196159377}
+  // var csv = "";
+
+  // for (var i = 0; i < 360; i += 10) {
+  //   for (var j = 0; j < 180; j += 10) {
+  //     csv += i + "," + j + ",";
+  //     csv +=
+  //       calcPosFromDegrees(j, i).x +
+  //       "," +
+  //       calcPosFromDegrees(j, i).y +
+  //       "," +
+  //       calcPosFromDegrees(j, i).z +
+  //       "\n";
+  //   }
+  // }
+
+  // console.log(csv);
 
   return (
     <div style={{ width: "100vw", height: "100vh" }}>
       <Canvas shadowMap camera={{ position: [100, 50, 100], fov: 50 }}>
-        <Sky distance={45000} sunPosition={[calc.x, calc.y, calc.z]} />
+        <Sky distance={45000} sunPosition={calc} />
 
         <OrbitControls
           minAzimuthAngle={-Math.PI / 4}
@@ -62,25 +74,38 @@ function Scene() {
         />
         <Suspense fallback={null}>
           <ambientLight intensity={0.7} />
-          <directionalLight
-            intensity={0.5}
-            castShadow // highlight-line
-            shadow-mapSize-height={512}
-            shadow-mapSize-width={512}
-            position={[calc.x, calc.y, calc.z]}
-          />
+          <DirectionalLightWithHelper calc={calc} />
           <Model />
-          {/* <Plane
+          {/* Plane just to see the shadow - I will remove it later */}
+          <Plane
             receiveShadow // highlight-line
             rotation={[-Math.PI / 2, 0, 0]}
-            position={[0, -10, 0]}
+            position={[0, -0.1, 0]}
             args={[100, 100]}
           >
             <meshStandardMaterial attach="material" color="white" />
-          </Plane> */}
+          </Plane>
         </Suspense>
       </Canvas>
     </div>
+  );
+}
+
+function DirectionalLightWithHelper(calc) {
+  console.log("DirectionalLightWithHelper", calc);
+  // helpers
+  const directionalLightRef = useRef();
+  useHelper(directionalLightRef, DirectionalLightHelper, 1, "red");
+
+  return (
+    <directionalLight
+      ref={directionalLightRef}
+      intensity={0.5}
+      castShadow // highlight-line
+      shadow-mapSize-height={512}
+      shadow-mapSize-width={512}
+      position={calc}
+    />
   );
 }
 
