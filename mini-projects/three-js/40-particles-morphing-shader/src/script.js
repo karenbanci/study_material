@@ -223,8 +223,13 @@ gltfLoader.load("./models.glb", (gltf) => {
     particles.morph(3);
   };
 
-  //Tweaks
+  // mudar o modelo a cada 5 segundos
+  setInterval(() => {
+    const newIndex = Math.floor(Math.random() * 4);
+    particles.morph(newIndex);
+  }, 5000);
 
+  //Tweaks
   gui.addColor(particles, "colorA").onChange(() => {
     particles.material.uniforms.uColorA.value.set(particles.colorA);
   });
