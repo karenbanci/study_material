@@ -1,5 +1,6 @@
 uniform vec2 uResolution;
 uniform sampler2D uPictureTexture;
+uniform sampler2D uColorGradientTexture;
 uniform sampler2D uDisplacementTexture;
 
 attribute float aIntensity;
@@ -39,4 +40,8 @@ void main() {
 
   // Varyings
   vColor = vec3(pow(pictureIntensity, 2.0));
+
+  vec3 colorGradient = texture(uColorGradientTexture, uv).rgb;
+  vColor = vec3(colorGradient);
+
 }

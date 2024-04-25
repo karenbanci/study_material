@@ -170,7 +170,10 @@ const particlesMaterial = new THREE.ShaderMaterial({
         sizes.height * sizes.pixelRatio
       )
     ),
-    uPictureTexture: new THREE.Uniform(textureLoader.load("./picture-1.png")),
+    uPictureTexture: new THREE.Uniform(textureLoader.load("./picture-5.png")),
+    uColorGradientTexture: new THREE.Uniform(
+      textureLoader.load("./texture-gradient-2.png")
+    ),
     uDisplacementTexture: new THREE.Uniform(displacement.texture),
   },
 

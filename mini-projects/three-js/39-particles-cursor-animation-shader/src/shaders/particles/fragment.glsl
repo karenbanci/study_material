@@ -1,4 +1,5 @@
 varying vec3 vColor;
+// uniform sampler2D uColorGradientTexture;
 
 void main() {
 
@@ -10,7 +11,12 @@ void main() {
     discard;
   };
 
+  // vec3 colorGradient = texture2D(uColorGradientTexture, uv).rgb;
+  // gl_FragColor = vec4(colorGradient, 1.0);
+
+  // gl_FragColor = vec4(1.0, 0.0, 0.0, 1.0)
   gl_FragColor = vec4(vColor, 1.0);
     #include <tonemapping_fragment>
     #include <colorspace_fragment>
+
 }
