@@ -35,6 +35,20 @@ app.post("/add", (req, res) => {
   });
 });
 
+// remove task
+app.delete("/remove", (req, res) => {
+  const taskId = req.body.taskId;
+  // Use taskId to remove task from database
+  db.run("DELETE FROM tasks WHERE id = ?", taskId, (err) => {
+    if (err) {
+      console.error(err.message);
+      res.status(500).send("Error deleting task from database");
+    } else {
+      res.redirect("/");
+    }
+  });
+});
+
 app.listen(3000, () => {
   console.log("Server is running on port 3000");
 });
