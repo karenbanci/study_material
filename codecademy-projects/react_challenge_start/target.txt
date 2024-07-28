@@ -1,0 +1,140 @@
+https://www.codecademy.com/paths/front-end-engineer-career-path/tracks/fecp-22-react-part-ii/modules/wdcp-22-appointment-planner/projects/appointment-planner
+
+
+Para concluir este projeto, você deve ter concluído as lições do Codecademy do Learn React , incluindo:
+
+JSX
+Componentes de reação
+Componentes Interagindo
+Componentes sem estado de componentes com estado
+Reação avançada
+Ganchos
+
+Requisitos do projeto
+2 .
+O código do aplicativo começa com App.js , ContactsPage.js e AppointmentsPage.js . Estes são os três componentes stateful com os quais você trabalhará neste projeto. App.js está localizado no diretório /src no explorador de arquivos e já deve estar aberto no editor de código.
+
+Appé um componente stateful que lida com o roteamento entre as duas páginas, ContactsPagee AppointmentsPage. Isso já está implementado usando o React Router .
+
+Nota: Você não precisa estar familiarizado com o React Router para concluir este projeto.
+
+Com base nos requisitos fornecidos, implemente Appcomo um componente com estado que mantém compromissos e contatos. Ele também deve passar esses valores, juntamente com funções de retorno de chamada para atualizar esses valores de estado, para seus componentes filhos.
+
+AppRequisitos:
+
+Acompanhe os dados de contatos e compromissos, cada um sendo uma matriz de objetos
+Defina uma função de retorno de chamada que, dado um nome, número de telefone e e-mail, adiciona um novo objeto de contato com esses dados à matriz de contatos
+Defina uma função de retorno de chamada que, dado um título, contato, data e hora, adiciona um novo objeto de compromisso com esses dados à matriz de compromissos
+Passe a matriz de contatos e a função de retorno de chamada apropriada como adereços para o ContactsPagecomponente
+Passe a matriz de compromissos, a matriz de contatos e a função adicionar compromisso como adereços para o AppointmentsPagecomponente
+
+3 .
+ContactsPage.js está localizado no diretório /src/containers/contactsPage no explorador de arquivos e já deve estar aberto no editor de código.
+
+Com base nos requisitos fornecidos, implemente ContactsPagecomo um componente com estado para lidar com a lógica para adicionar novos contatos e listar os contatos atuais.
+
+ContactsPageRequisitos:
+
+Receba dois adereços:
+A lista atual de contatos
+Uma função de retorno de chamada para adicionar um novo contato
+Acompanhe três valores de estado local: o nome atual, telefone e e-mail inseridos no formulário
+Verifique se há duplicatas sempre que o nome no formulário for alterado e indique que o nome é uma duplicata
+Apenas adicione um novo contato no envio do formulário se ele não duplicar o nome de um contato existente
+Um envio bem-sucedido deve limpar o formulário
+Na seção Adicionar contato , renderize um ContactFormcom o seguinte passado via props:
+variáveis ​​de estado local
+funções de configuração de variável de estado local
+handleSubmitfunção de retorno de chamada
+Na seção Contatos , renderize a TileListcom a matriz de contatos passada viaprops
+
+4.
+ContactForm.js está localizado no diretório /src/components/contactForm no explorador de arquivos e já deve estar aberto no editor de código.
+
+Com base nos requisitos fornecidos, implemente ContactFormcomo um componente sem estado que renderiza um formulário da web para coletar as informações de contato necessárias.
+
+ContactFormRequisitos:
+
+Renderize um formcom:
+O onSubmitconjunto de atributos
+3 elementos controlados <input>, um para cada dado de contato
+Um botão de envio
+Inclua um patternatributo para o telefone <input>com um regex que corresponda à localidade do telefone de sua preferência
+
+5 .
+Abra o arquivo TileList.js localizado no diretório /src/components/tileList .
+
+Com base nos requisitos fornecidos, implemente TileListcomo um componente sem estado que renderiza uma lista de Tilecomponentes usando uma matriz de objetos.
+
+TileListRequisitos:
+
+Receba um adereço:
+Uma matriz de objetos para renderizar como uma lista
+Use o array passado propspara renderizar componentes iterativamente Tile, passando cada objeto no array como um prop para cada Tilecomponente renderizado
+Os requisitos para o TileListcomponente são generalizados e permitem que ele seja compartilhado pelos componentes ContactsPagee AppointmentsPage. Contanto que uma matriz de objetos com dados de contato ou dados de compromissos seja passada, o conteúdo será tratado adequadamente.
+
+
+6 .
+Abra o arquivo Tile.js localizado no diretório /src/components/tile .
+
+Com base nos requisitos fornecidos, implemente Tilecomo um componente sem estado que renderiza os dados de um objeto.
+
+TileRequisitos:
+
+Receba um adereço:
+Um objeto
+Iterar sobre os valores no objeto, passados ​​via props, e renderizar um <p>elemento para cada valor
+Dê um classNameof "tile-title"ao primeiro <p>elemento
+Dê um classNameof "tile"para todos os outros <p>elementos
+Assim como o TileListcomponente, o Tilecomponente é generalizado para trabalhar com dados de qualquer objeto. Isso permite que ele seja usado nos componentes ContactsPagee AppointmentsPage.
+
+7.Abra o arquivo AppointmentsPage.js localizado no diretório /src/containers/appointmentsPage .
+
+Com base nos requisitos fornecidos, implemente AppointmentsPagecomo um componente com estado que lida com a lógica para adicionar novos compromissos e listar os compromissos atuais.
+
+AppointmentsPageRequisitos:
+
+Receba três adereços:
+A lista atual de compromissos
+A lista atual de contatos
+Uma função de retorno de chamada para adicionar um novo compromisso
+Acompanhe quatro variáveis ​​de estado local, o título atual, contato, data e hora inseridos no formulário
+Adicionar um novo compromisso no envio do formulário
+Limpar o formulário no envio
+Na seção Add Appointment , renderize um AppointmentFormcom o seguinte passado via props:
+variáveis ​​de estado local
+funções de configuração de variável de estado local
+handleSubmitfunção de retorno de chamada
+Na seção Compromissos , renderize a TileListcom a matriz de compromissos passada viaprops
+
+8 .
+Abra o arquivo AppointmentForm.js localizado no diretório /src/components/appointmentForm .
+
+Com base nos requisitos fornecidos, implemente AppointmentFormcomo um componente sem estado que renderiza um formulário da web para coletar as informações de agendamento necessárias.
+
+AppointmentFormRequisitos:
+
+Renderize um formcom:
+O onSubmitatributo definido para a função de retorno de chamada passado viaprops
+3 componentes controlados input, a serem usados ​​para os dados de nomeação de título, data e hora
+Um ContactPickercomponente com a lista de contatos passada via props
+Um botão de envio
+Use getTodayString()para definir o minatributo da datainput
+
+9 .
+Abra o arquivo ContactPicker.js localizado no diretório /src/components/contactPicker .
+
+Com base nos requisitos fornecidos, implemente ContactPickercomo um componente sem estado que renderiza uma lista suspensa de todos os nomes de contato.
+
+ContactPickerRequisitos:
+
+Receba 2 adereços:
+A matriz de contatos
+Uma função de retorno de chamada para manipular quando o onChangeevento é acionado
+Renderize um selectelemento com o onChangeatributo definido para o retorno de chamada passado via props
+Ter um primeiro elemento padrão optionque indica que nenhum contato está selecionado
+Adicione optionelementos iterativamente usando os nomes de contato do array passado por meio de props
+
+Solução
+10 .
+Ótimo trabalho! Visite nossos fóruns para comparar seu projeto com nosso código de solução de exemplo. Você também pode aprender como hospedar sua própria solução no GitHub para poder compartilhá-la com outros alunos! Sua solução pode parecer diferente da nossa, e tudo bem! Existem várias maneiras de resolver esses projetos, e você aprenderá mais vendo o código de outras pessoas.
