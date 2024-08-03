@@ -1,6 +1,6 @@
 const chalk = require("chalk");
 
-const nota = 2;
+const nota = 9;
 
 // console.log(chalk.green.bold("Sua nota é: " + nota));
 
