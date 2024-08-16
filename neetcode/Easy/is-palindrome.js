@@ -41,7 +41,7 @@ class Solution {
         r--;
       }
       if (s[l].toLowerCase() !== s[r].toLowerCase()) {
-        return false;
+        return alse;
       }
       l++;
       r--;
@@ -61,7 +61,7 @@ class Solution {
 
 //chamar o class Solution
 const solution = new Solution();
-// console.log(solution.isPalindrome("Was it a car or a cat I saw?")); //true
+console.log(solution.isPalindrome("Was it a car or a cat I saw?")); //true
 console.log(solution.isPalindrome("tab a cat")); //false
 
 // class Solution {
