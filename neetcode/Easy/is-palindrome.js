@@ -41,7 +41,7 @@ class Solution {
         r--;
       }
       if (s[l].toLowerCase() !== s[r].toLowerCase()) {
-        return alse;
+        return false;
       }
       l++;
       r--;

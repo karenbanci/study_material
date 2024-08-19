@@ -294,38 +294,207 @@
 // console.log(vogais("Javascript"));
 
 //- Escreva uma função que determine se uma string dada é um palíndromo (lê-se igual de frente para trás).
-const palindromo = (str) => {
-  const lower = str.toLowerCase();
-  let left = lower.length - 1;
-  let right = lower.length;
-  // iteração da direita para a esquerda
-  for (let i = 0; i < right; i++) {
-    // iteração da esquerda para a direita
-    console.log("lower[i]", lower[i], "i", i);
-    for (let j = left; j >= 0; j--) {
-      console.log("lower[j]", lower[j], "j", j);
-      if (lower[i] === lower[j]) {
-        // return true;
-      }
-      return false;
-    }
-  }
-};
-console.log(palindromo("Ana"));
-console.log(palindromo("Anna"));
-console.log(palindromo("Caminhao"));
-console.log(palindromo("Abca"));
+// const palindromo = (str) => {
+//   const lower = str.toLowerCase();
+//   let inicio = 0;
+//   let fim = lower.length - 1;
+
+//   while (inicio < fim) {
+//     // console.log("inicio:", inicio, "->", lower[inicio]);
+//     // console.log("fim:", fim, "->", lower[fim]);
+
+//     if (lower[inicio] !== lower[fim]) {
+//       return false;
+//     }
+//     inicio++;
+//     fim--;
+//   }
+//   return true;
+// };
+// console.log(palindromo("Ana"));
+// console.log(palindromo("Anna"));
+// console.log(palindromo("Caminhao"));
+// console.log(palindromo("Abca"));
 
 // - Crie uma função que substitua todos os espaços em uma string por underscores (`_`).
+// const substituir = (str) => {
+//   return str.replaceAll(" ", "_");
+// };
+// console.log(
+//   substituir(
+//     "Crie uma função que substitua todos os espaços em uma string por underscores"
+//   )
+// );
 
 // - Escreva uma função que receba uma string e retorne a substring mais longa sem caracteres repetidos.
+// const substring = (str) => {
+//   const mapaCaracteres = new Map();
+//   let inicio = 0;
+//   // let maxComprimento = 0;
+
+//   for (let fim = 0; fim < str.length; fim++) {
+//     const char = str[fim];
+
+//     // Se o caractere já foi visto e está dentro da janela atual, mova o início da janela
+//     if (mapaCaracteres.has(char) && mapaCaracteres.get(char) >= inicio) {
+//       inicio = mapaCaracteres.get(char) + 1;
+//     }
+
+//     // Atualiza ou adiciona o índice do caractere no mapa
+//     mapaCaracteres.set(char, fim);
+//     console.log(mapaCaracteres);
+
+//     // Calcula o comprimento da janela atual
+//     // maxComprimento = Math.max(maxComprimento, fim - inicio + 1);
+//   }
+//   // console.log(mapaCaracteres);
+
+//   const subStr = [...mapaCaracteres.keys()].join("");
+//   console.log("substring =>", subStr);
+
+//   return subStr;
+// };
+// console.log(substring("calculadora"));
+// console.log(substring("tomate"));
+// console.log(substring("anna"));
+
+// function substringMaisLongaSemRepetidos(s) {
+//   const mapaCaracteres = new Map();
+//   let inicio = 0;
+//   let maxComprimento = 0;
+//   let inicioMax = 0;
+
+//   for (let fim = 0; fim < s.length; fim++) {
+//     const char = s[fim];
+
+//     // Se o caractere já foi visto e está dentro da janela atual, mova o início da janela
+//     if (mapaCaracteres.has(char) && mapaCaracteres.get(char) >= inicio) {
+//       inicio = mapaCaracteres.get(char) + 1;
+//     }
+
+//     // Atualiza ou adiciona o índice do caractere no mapa
+//     mapaCaracteres.set(char, fim);
+
+//     // Verificamos se o comprimento da janela atual é maior que o comprimento máximo encontrado
+//     if (fim - inicio + 1 > maxComprimento) {
+//       maxComprimento = fim - inicio + 1;
+//       inicioMax = inicio;
+//     }
+//   }
+
+//   // Retorna a substring mais longa encontrada
+//   return s.slice(inicioMax, inicioMax + maxComprimento);
+// }
+
+// // Exemplo de uso
+// const input = "calculadora";
+// const output = substringMaisLongaSemRepetidos(input);
+
+// console.log(output); // "lculador"
 
 // - Escreva uma função que receba um array e um valor, e retorne o primeiro índice em que o valor é encontrado. Se não for encontrado, retorne `-1`.
+// const encontre = (arr, val) => {
+//   for (let i = 0; i < arr.length; i++) {
+//     console.log("arr[i]", arr[i], "index", i);
+//     // console.log("val", val);
+//     if (val === arr[i]) {
+//       return i;
+//     }
+//   }
+//   return -1;
+// };
+// console.log(encontre([1, 2, 6, 4, 3, 8], 7));
+// console.log(encontre([1, 2, 6, 4, 3, 23], 32));
+// console.log(encontre([1, 2, 6, 73, 3, 23], 73));
+// console.log(encontre([1, 2, 6, 4, 3, 8], 6));
 
 // - Dado um array de números, escreva uma função que mova todos os zeros para o final do array, mantendo a ordem dos outros elementos.
+// const ordem = (arr) => {
+//   let newArr = [];
+//   let count = 0;
+//   for (let i = 0; i < arr.length; i++) {
+//     if (arr[i] !== 0) {
+//       // arr[i].remove();
+//       newArr.push(arr[i]);
+//     } else {
+//       count++;
+//     }
+//   }
+//   for (let j = 0; j < count; j++) {
+//     newArr.push(0);
+//   }
+
+//   // console.log(newArr);
+//   return newArr;
+// };
+// console.log(ordem([0, 2, 5, 200, 0, 70, 27]));
+
+//A. Faz uma funcao que recebe um string, e devolve o string invertido. Só pode usar um for assim: for (i=0;i<len;i++){...}
+// const revert = (str) => {
+//   let output = "";
+
+//   for (let i = 0; i < str.length; i++) {
+//     let calculator = str.length - i - 1;
+//     output += str[calculator];
+
+//     console.log(calculator);
+//   }
+//   return output;
+// };
+// console.log(revert("COMPUTADOR"));
+
+/* B. Faz uma funcao que recebe um string, e printa cada letra de tras pra frente, e de frente pra tras. Só pode usar um (só um) FOR assim: for (i=0;i<len;i++){...}
+
+Exemplo: Jairo
+Jo
+ar
+ii
+ra
+oJ
+*/
+// const parInvertido = (str) => {
+//   for (let i = 0; i < str.length; i++) {
+//     let calculator = str.length - i - 1;
+//     // console.log(calculator);
+//     console.log(str[i], str[calculator]);
+//   }
+// };
+// console.log(parInvertido("JAIRO"));
 
 // - Escreva uma função que receba um array de números e retorne todos os pares de números que somem a um valor dado.
+// const pares = (arr, target) => {
+//   for (let i = 0; i < arr.length; i++) {
+//     for (let j = 0; j < i; j++) {
+//       let calculo = target - arr[i] - arr[j];
+//       // console.log(calculo);
+//       if (calculo === 0 && arr[i] !== arr[j]) {
+//         let newArr = [arr[i], arr[j]];
+//         console.log(newArr);
+//       }
+//     }
+//   }
+// };
+// console.log(pares([2, 3, 5, 8, 4, 6, 10, 9, 1, 0], 10));
 
 // - Dado um array, escreva uma função que o rotacione `k` posições para a direita.
+// const mudarPosicao = (arr, k, target) => {
+//   const index = k;
+
+//   for (let i = 0; i < arr.length; i++) {
+//     // console.log(arr[i - k]);
+//     if (arr[i] === target) {
+//       // console.log(arr[i]);
+//       const temp = arr[index];
+//       console.log("temporario", temp);
+//       arr[index] = arr[i];
+//       arr[i] = temp;
+//       console.log(arr);
+//     }
+//     // const newArr =
+//   }
+// };
+// //                        0     1    2    3   4
+// console.log(mudarPosicao(["K", "A", "R", "E", "N"], 2, "K"));
+// // output                 "A", "R", "K", "E", "N"
 
 // - Crie uma função que receba um array e dois índices, e troque os elementos nessas posições.
