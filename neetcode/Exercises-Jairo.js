@@ -498,3 +498,342 @@ oJ
 // // output                 "A", "R", "K", "E", "N"
 
 // - Crie uma função que receba um array e dois índices, e troque os elementos nessas posições.
+// const changePosition = (arr, first, second) => {
+//   let indexTemp = arr[first];
+//   arr[first] = arr[second];
+//   arr[second] = indexTemp;
+
+//   return arr;
+// };
+// console.log(changePosition([2, 3, 4, 5], 0, 3));
+// console.log(changePosition(["Jairo", "Karen", "Patricia", "Liamara"], 1, 3));
+
+/** Encontrar dois números em uma lista que somam a um valor-alvo dado e retornar seus índices. */
+// const findIndex = (list, target) => {
+//   for (let i = 0; i < list.length; i++) {
+//     for (let j = 0; j < list.length; j++) {
+//       if (list[i] + list[j] === target) {
+//         console.log("result", i, j);
+//         return [i, j];
+//       }
+//     }
+//   }
+// };
+// console.log(findIndex([1, 2, 3, 4, 5], 4)); // 0,2
+
+/* Verificar se um número inteiro é um palíndromo, ou seja, se ele é igual quando lido de trás para frente. */
+// const palindromo = (int) => {
+//   const arr = int.toString().split("");
+//   let inicio = 0;
+//   let fim = arr.length - 1;
+
+//   while (inicio < fim) {
+//     if (arr[inicio] !== arr[fim]) {
+//       console.log(inicio, fim);
+//       return false;
+//     }
+//     inicio++;
+//     fim--;
+//   }
+//   return true;
+// };
+// console.log(palindromo(2012));
+// console.log(palindromo(2002));
+
+/* Converter um número representado em algarismos romanos para um número inteiro. */
+// const convert = (str) => {
+//   const arr = str.split("");
+//   let result = 0;
+
+//   const romanMap = {
+//     I: 1,
+//     V: 5,
+//     X: 10,
+//     L: 50,
+//     C: 100,
+//     D: 500,
+//     M: 1000,
+//   };
+
+//   for (let i = 0; i < arr.length; i++) {
+//     const current = romanMap[arr[i]];
+//     console.log("current", current);
+//     const next = romanMap[arr[i + 1]];
+//     console.log("next", next);
+
+//     if (next && current < next) {
+//       result -= current;
+//     } else {
+//       result += current;
+//     }
+//   }
+
+//   return result;
+// };
+// // console.log(convert("XXI"));
+// console.log(convert("XIV"));
+
+// FIZZBUZZ
+// function fizzBuzz(n) {
+//   // console.log(n);
+//   // Write your code here
+//   for (let i = 1; i <= n; i++) {
+//     if (i % 3 === 0 && i % 5 === 0) {
+//       console.log("FizzBuzz");
+//     } else if (i % 3 === 0) {
+//       console.log("Fizz");
+//     } else if (i % 5 === 0) {
+//       console.log("Buzz");
+//     } else {
+//       console.log(i);
+//     }
+//   }
+// }
+// console.log(fizzBuzz(15));
+
+// // Max difference
+// const maxDifference = (px) => {
+//   let max = 0;
+//   let foundPositiveDiff = false;
+
+//   for (let i = 0; i < px.length; i++) {
+//     for (let j = i + 1; j < px.length; j++) {
+//       console.log("i", px[i], "j", px[j]);
+//       if (px[i] < px[j]) {
+//         let curr = px[j] - px[i];
+//         console.log("px[j] - px[i]", curr);
+//         foundPositiveDiff = true; // Indica que encontramos uma diferença positiva
+
+//         if (curr > max) {
+//           max = curr;
+//         }
+//       }
+//     }
+//   }
+
+//   if (!foundPositiveDiff) {
+//     return -1; // Retorna -1 se nenhuma diferença positiva foi encontrada
+//   }
+
+//   return max;
+// };
+
+// console.log(maxDifference([7, 1, 2, 5])); // 4
+
+/** Verificar se todos os parênteses em uma string estão corretamente balanceados e fechados. */
+// const parenteses = (str) => {
+//   let stack = [];
+
+//   for (let i = 0; i < str.length; i++) {
+//     if (str[i] === "(") {
+//       stack.push(str[i]);
+//     } else if (str[i] === ")") {
+//       // Se encontramos um parêntese de fechamento sem ter um de abertura correspondente
+//       if (stack.length === 0) {
+//         return false;
+//       }
+//       stack.pop();
+//     }
+//   }
+
+//   // Se a pilha estiver vazia no final, os parênteses estão balanceados
+//   return stack.length === 0;
+// };
+
+// console.log(parenteses("()"));
+// console.log(parenteses("(()"));
+// console.log(parenteses("(())"));
+// console.log(parenteses("(()))"));
+
+/**Fundir duas listas encadeadas que estão ordenadas em uma única lista ordenada. */
+// class Node {
+//   constructor(data) {
+//     (this.data = data), (this.next = null);
+//   }
+// }
+
+// class LinkedList {
+//   constructor(head) {
+//     this.head = null; // sempre inicializa com null
+//   }
+
+//   append(data) {
+//     const newNode = new Node(data);
+
+//     // se a cabeça for nula
+//     if (this.head === null) {
+//       //o dado vai ser colocado na cabeça
+//       this.head = newNode;
+//       return;
+//     }
+
+//     // Adicionar no último node
+//     // atual node é a cabeça
+//     let current = this.head;
+
+//     //enquanto o próximo do atual for diferente de nulo
+//     while (current.next !== null) {
+//       // atual será atual do proxmo
+//       current = current.next;
+//     }
+
+//     // o próximo é o dado - adicionar o dado no último node
+//     current.next = newNode;
+//   }
+
+//   printList() {
+//     let current = this.head;
+//     let listStr = "";
+//     while (current !== null) {
+//       listStr += current.data + "->";
+//       current = current.next;
+//     }
+//     console.log(listStr + "null");
+//   }
+
+//   remove(data) {
+//     if (this.head === null) {
+//       return;
+//     }
+
+//     if (this.head.data === data) {
+//       this.head = this.head.next;
+//       return;
+//     }
+
+//     let current = this.head;
+//     let prev = null;
+
+//     // buscar o nó a ser removido
+//     while (current !== null && current.data !== data) {
+//       prev = current;
+//       current = current.next;
+//     }
+
+//     // se nao tiver na lista
+//     if (current === null) {
+//       return;
+//     }
+
+//     prev.next = current.next;
+//   }
+// }
+
+// const linkedListOne = new LinkedList();
+
+// // Adicionando elementos
+// linkedListOne.append(5);
+// linkedListOne.append(6);
+// linkedListOne.append(9);
+
+// // Imprimindo a lista
+// console.log("Lista original One:");
+// linkedListOne.printList();
+
+// const linkedListTwo = new LinkedList();
+
+// // Adicionando elementos
+// linkedListTwo.append(7);
+// linkedListTwo.append(10);
+// linkedListTwo.append(18);
+
+// // Imprimindo a lista
+// console.log("Lista original Two:");
+// linkedListTwo.printList();
+
+// const joinLinkedList = (listOne, listTwo) => {
+//   console.log(listOne.head);
+//   console.log(listTwo.head);
+
+//   // Achar o ultimo node do primeiro LL
+//   let current = listOne.head;
+
+//   // --- enquanto o proximo do atual != de nulo
+//   while (current.next != null) {
+//     // atual será atual do proximo
+//     current = current.next;
+//   }
+//   console.log("atual", current);
+
+//   // Adicionar a head do segundo LL ao último node do primeiro LL
+//   let head = listTwo.head;
+//   current.next = head;
+
+//   // retorna a primeira LL
+//   console.log("ver se deu certo", listOne);
+//   //]]-
+//   listOne.printList();
+// };
+// console.log(joinLinkedList(linkedListOne, linkedListTwo));
+
+/**
+Smallest Substring of All Characters
+Given an array of unique characters arr and a string str, Implement a function getShortestUniqueSubstring that finds the smallest substring of str containing all the characters in arr. Return "" (empty string) if such a substring doesn’t exist.
+
+Come up with an asymptotically optimal solution and analyze the time and space complexities.
+
+Example:
+input:  arr = ['x','y','z'], str = "xyyzyzyx"
+output: "zyx"
+
+array
+index    0  1  2
+         x  y  z
+
+string
+index    0   1   2   3   4   5   6   7
+         x   y   y   z   y   z   y   x
+
+output -> zyx
+
+// a substring só é válida se tiver todos os caracteres da array
+ */
+
+// function getShortestUniqueSubstring(arr, str) {
+//   const charMap = new Map();
+//   let left = 0;
+//   let minLength = Infinity;
+//   let minSubstring = "";
+//   let uniqueCounter = 0;
+
+//   // Inicializa o mapa de caracteres
+//   for (const char of arr) {
+//     charMap.set(char, 0);
+//   }
+//   console.log("charMap", charMap);
+//   // Expande a janela deslizante com o ponteiro direito (right)
+//   for (let right = 0; right < str.length; right++) {
+//     const rightChar = str[right];
+
+//     if (charMap.has(rightChar)) {
+//       if (charMap.get(rightChar) === 0) {
+//         uniqueCounter += 1;
+//       }
+//       charMap.set(rightChar, charMap.get(rightChar) + 1);
+//     }
+
+//     // Contrai a janela deslizante com o ponteiro esquerdo (left)
+//     while (uniqueCounter === arr.length) {
+//       const currentLength = right - left + 1;
+
+//       if (currentLength < minLength) {
+//         minLength = currentLength;
+//         minSubstring = str.substring(left, right + 1);
+//       }
+
+//       const leftChar = str[left];
+//       if (charMap.has(leftChar)) {
+//         if (charMap.get(leftChar) === 1) {
+//           uniqueCounter -= 1;
+//         }
+//         charMap.set(leftChar, charMap.get(leftChar) - 1);
+//       }
+
+//       left += 1;
+//     }
+//   }
+
+//   return minSubstring;
+// }
+
+// console.log(getShortestUniqueSubstring(["x", "y", "z"], "xyyzyzyx"));
