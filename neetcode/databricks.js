@@ -195,3 +195,9 @@ function zerarArray(arr) {
   console.log("final", arr);
 }
 zerarArray([3, 3, 5, 2, 3]);
+
+// Problema 4
+
+// Dado uma array
+// ex. [1, 23, 135, 74, 67, 531, 23]
+// Saida 2 porque 23 e 23, e 135 e 531
