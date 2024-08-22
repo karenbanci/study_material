@@ -837,3 +837,112 @@ output -> zyx
 // }
 
 // console.log(getShortestUniqueSubstring(["x", "y", "z"], "xyyzyzyx"));
+
+/** Remover todos os elementos duplicados de um array que já está ordenado e retornar o novo comprimento. */
+// const removeDuplicate = (arr) => {
+//   let arrTwo = [];
+
+//   for (let i = 0; i < arr.length; i++) {
+//     if (arr[i] !== arr[i + 1]) {
+//       arrTwo.push(arr[i]);
+//     }
+//   }
+//   console.log(arrTwo);
+//   return arrTwo.length;
+// };
+// console.log(removeDuplicate(["abacate", "banana", "banana", "cenoura"]));
+// console.log(removeDuplicate([2, 3, 4, 5, 6, 6, 7]));
+
+/** Remover todas as ocorrências de um valor específico de um array e retornar o novo comprimento do array. */
+// const removeOccur = (arr, target) => {
+//   let newArr = [];
+//   for (let i = 0; i < arr.length; i++) {
+//     if (arr[i] !== target) {
+//       newArr.push(arr[i]);
+//     }
+//   }
+//   console.log(newArr);
+// };
+// console.log(removeOccur([56, 78, 43, 21, 2, 4], 78));
+// console.log(
+//   removeOccur(["abacate", "banana", "beterraba", "cenoura"], "banana")
+// );
+
+/* Implementar a função `strStr()` que encontra a primeira ocorrência de uma substring em uma string maior.*/
+// function strStr(str, sub) {
+//   let strLen = str.length; // Obtém o comprimento da string maior
+//   let subLen = sub.length; // Obtém o comprimento da substring
+
+//   if (sub === "") {
+//     return 0; // Caso especial: se a substring for vazia, retorna 0
+//   }
+
+//   // Percorre a string maior até onde ainda é possível encontrar a substring
+//   for (let i = 0; i <= strLen - subLen; i++) {
+//     // Verifica se a substring a partir da posição i corresponde ao needle
+//     if (str.substring(i, i + subLen) === sub) {
+//       return i; // Retorna o índice da primeira ocorrência
+//     }
+//   }
+
+//   // Se não encontrar, retorna -1
+//   return -1;
+// }
+
+// strStr("karenbanci", "enb");
+// strStr("karenbanci", "");
+// strStr("ka", "kakakaka");
+
+/* Converter um número representado em algarismos romanos para um número inteiro. */
+// const convert = (str) => {
+//   const arr = str.split("");
+//   let sum = 0;
+
+//   const algarismo = {
+//     I: 1,
+//     V: 5,
+//     X: 10,
+//     L: 50,
+//     C: 100,
+//     D: 500,
+//     M: 1000,
+//   };
+
+//   for (let i = 0; i < arr.length; i++) {
+//     let current = algarismo[arr[i]];
+//     let next = algarismo[arr[i + 1]];
+//     console.log(
+//       "arr[i]",
+//       arr[i],
+//       " ------- current",
+//       current,
+//       " ------  next",
+//       next
+//     );
+
+//     if (next && current < next) {
+//       sum -= current;
+//     } else {
+//       sum += current;
+//     }
+
+//     console.log();
+//   }
+
+//   console.log(sum);
+// };
+// console.log(convert("XXI"));
+
+// function asterisks(n) {
+//   const star = "*";
+
+//   for (let i = 1; i <= n; i++) {
+//     let spaces = " ".repeat(n - i); // spaces before the asterisks
+//     let stars = star.repeat(2 * i - 1); // asterisks in the row
+//     console.log(spaces + stars + spaces);
+//   }
+// }
+
+// asterisks(3);
+// asterisks(5);
+// asterisks(10);
