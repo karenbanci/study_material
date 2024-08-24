@@ -113,3 +113,24 @@ Note: - 12:00:00AM on a 12-hour clock is 00:00:00 on a 24-hour clock.
 // timeConversion("10:20:00PM");
 // timeConversion("12:20:00AM");
 // timeConversion("06:43:03AM");
+
+// final challenge - find the median number
+// function findMedian(arr) {
+//   // Write your code here
+
+//   const sort = arr.sort((a, b) => a - b);
+//   console.log(sort);
+
+//   let midIndex = 0;
+
+//   if (sort.length % 2 == 0) {
+//     midIndex = parseInt(sort.length / 2 + 1);
+//   } else {
+//     midIndex = parseInt(sort.length / 2);
+//   }
+
+//   console.log(arr[midIndex]);
+//   return arr[midIndex];
+// }
+
+// findMedian([5, 3, 1, 2, 4]);
