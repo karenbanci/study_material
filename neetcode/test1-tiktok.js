@@ -47,93 +47,93 @@ function readLine() {
 // const { right } = require("inquirer/lib/utils/readline");
 
 // complexidade da função interira -> O(nˆ2)
-function GetOptimalContentStorage(tiktokStorage) {
-  console.log("tiktokStorage::::::::::::", tiktokStorage);
-  // Write your code here
-  let operations = 0;
-  let temp = 0;
+// function GetOptimalContentStorage(tiktokStorage) {
+//   console.log("tiktokStorage::::::::::::", tiktokStorage);
+//   // Write your code here
+//   let operations = 0;
+//   let temp = 0;
 
-  let empilhar_para = "";
-  let counter_left = 0;
-  let counter_right = 0;
-  // determinar a direção do algorítmo
-  for (let left = 0; left < tiktokStorage.length; left++) {
-    // O(n) - tempo
-    let right = tiktokStorage.length - left - 1;
-    console.log("left", left, "right", right);
-    if (left >= right) {
-      console.log("parar");
-      if (counter_left > counter_right) {
-        empilhar_para = "esquerda";
-      } else {
-        empilhar_para = "direita";
-      }
-      break;
-    }
-    if (tiktokStorage[left] === 1) {
-      counter_left++;
-    }
-    if (tiktokStorage[right] === 1) {
-      counter_right++;
-    }
-  }
-  console.log("empilhar_para ---->", empilhar_para);
-  console.log("counter_left", counter_left);
-  console.log("counter_right", counter_right);
+//   let empilhar_para = "";
+//   let counter_left = 0;
+//   let counter_right = 0;
+//   // determinar a direção do algorítmo
+//   for (let left = 0; left < tiktokStorage.length; left++) {
+//     // O(n) - tempo
+//     let right = tiktokStorage.length - left - 1;
+//     console.log("left", left, "right", right);
+//     if (left >= right) {
+//       console.log("parar");
+//       if (counter_left > counter_right) {
+//         empilhar_para = "esquerda";
+//       } else {
+//         empilhar_para = "direita";
+//       }
+//       break;
+//     }
+//     if (tiktokStorage[left] === 1) {
+//       counter_left++;
+//     }
+//     if (tiktokStorage[right] === 1) {
+//       counter_right++;
+//     }
+//   }
+//   console.log("empilhar_para ---->", empilhar_para);
+//   console.log("counter_left", counter_left);
+//   console.log("counter_right", counter_right);
 
-  // seria um jeito para otimizar a complexidade de tempo de O(n^2) para O(n)
-  // while (left < right && operations < maxOperations) {
-  //   if (tiktokStorage[left] === 0 && tiktokStorage[right] === 1) {
-  //     // Swap elements
-  //     let temp = tiktokStorage[left];
-  //     tiktokStorage[left] = tiktokStorage[right];
-  //     tiktokStorage[right] = temp;
-  //     operations++;
-  //     left++;
-  //     right--;
-  //  }}
+//   // seria um jeito para otimizar a complexidade de tempo de O(n^2) para O(n)
+//   // while (left < right && operations < maxOperations) {
+//   //   if (tiktokStorage[left] === 0 && tiktokStorage[right] === 1) {
+//   //     // Swap elements
+//   //     let temp = tiktokStorage[left];
+//   //     tiktokStorage[left] = tiktokStorage[right];
+//   //     tiktokStorage[right] = temp;
+//   //     operations++;
+//   //     left++;
+//   //     right--;
+//   //  }}
 
-  for (let left = 0; left < tiktokStorage.length; left++) {
-    // O(nˆ2/2) -> O(nˆ2) - tempo
-    for (let right = tiktokStorage.length - 1; right > left; right--) {
-      if (left > right) {
-        break;
-      }
+//   for (let left = 0; left < tiktokStorage.length; left++) {
+//     // O(nˆ2/2) -> O(nˆ2) - tempo
+//     for (let right = tiktokStorage.length - 1; right > left; right--) {
+//       if (left > right) {
+//         break;
+//       }
 
-      console.log("tiktokStorage::::::::::::", tiktokStorage);
+//       console.log("tiktokStorage::::::::::::", tiktokStorage);
 
-      if (empilhar_para === "direita") {
-        if (tiktokStorage[left] === 1 && tiktokStorage[right] === 0) {
-          temp = tiktokStorage[left];
-          tiktokStorage[left] = tiktokStorage[right];
-          tiktokStorage[right] = temp;
-          operations++;
-        } else {
-        }
-      } else if (empilhar_para === "esquerda") {
-        if (tiktokStorage[left] === 0 && tiktokStorage[right] === 1) {
-          temp = tiktokStorage[left];
-          tiktokStorage[left] = tiktokStorage[right];
-          tiktokStorage[right] = temp;
-          operations++;
-        } else {
-        }
-      }
-    }
-  }
-  console.log("numero de operações", operations);
-  return operations;
-}
+//       if (empilhar_para === "direita") {
+//         if (tiktokStorage[left] === 1 && tiktokStorage[right] === 0) {
+//           temp = tiktokStorage[left];
+//           tiktokStorage[left] = tiktokStorage[right];
+//           tiktokStorage[right] = temp;
+//           operations++;
+//         } else {
+//         }
+//       } else if (empilhar_para === "esquerda") {
+//         if (tiktokStorage[left] === 0 && tiktokStorage[right] === 1) {
+//           temp = tiktokStorage[left];
+//           tiktokStorage[left] = tiktokStorage[right];
+//           tiktokStorage[right] = temp;
+//           operations++;
+//         } else {
+//         }
+//       }
+//     }
+//   }
+//   console.log("numero de operações", operations);
+//   return operations;
+// }
 
-console.log("caso 1 --->", GetOptimalContentStorage([1, 0, 1, 0, 1]));
-console.log("caso 2 --->", GetOptimalContentStorage([1, 0, 0, 1, 1, 0]));
-console.log("caso 3 --->", GetOptimalContentStorage([1, 0, 0, 0, 1]));
-console.log("caso 4 --->", GetOptimalContentStorage([0, 1, 1, 0, 0, 1]));
+// console.log("caso 1 --->", GetOptimalContentStorage([1, 0, 1, 0, 1]));
+// console.log("caso 2 --->", GetOptimalContentStorage([1, 0, 0, 1, 1, 0]));
+// console.log("caso 3 --->", GetOptimalContentStorage([1, 0, 0, 0, 1]));
+// console.log("caso 4 --->", GetOptimalContentStorage([0, 1, 1, 0, 0, 1]));
 
-console.log(
-  "caso 5 --->",
-  GetOptimalContentStorage([1, 0, 0, 1, 1, 0, 0, 0, 1])
-);
+// console.log(
+//   "caso 5 --->",
+//   GetOptimalContentStorage([1, 0, 0, 1, 1, 0, 0, 0, 1])
+// );
 
 // function main() {
 //   const ws = fs.createWriteStream(process.env.OUTPUT_PATH);

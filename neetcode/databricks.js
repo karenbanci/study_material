@@ -162,39 +162,39 @@ index =  0  1  2  3  4
 output = [0, 0, 0, 0, 0]
 ocorrencia = 7
 
- */
-function zerarArray(arr) {
-  let count = 0;
-  let x = arr[0];
+//  */
+// function zerarArray(arr) {
+//   let count = 0;
+//   let x = arr[0];
 
-  for (let i = 0; i < arr.length; i++) {
-    let curr;
+//   for (let i = 0; i < arr.length; i++) {
+//     let curr;
 
-    console.log("x=", x, `       arr[${i}]=`, arr[i]);
+//     console.log("x=", x, `       arr[${i}]=`, arr[i]);
 
-    if (arr[i] >= x) {
-      arr[i] = arr[i] - x;
-      count++;
-    } else if (arr[i] === 0) {
-      continue;
-    } else if (x > arr[i]) {
-      x = arr[i];
-      i = 0;
-    }
+//     if (arr[i] >= x) {
+//       arr[i] = arr[i] - x;
+//       count++;
+//     } else if (arr[i] === 0) {
+//       continue;
+//     } else if (x > arr[i]) {
+//       x = arr[i];
+//       i = 0;
+//     }
 
-    if (arr[i] > 0 && i === arr.length - 1) {
-      i = 0;
-      console.log("i");
-    }
+//     if (arr[i] > 0 && i === arr.length - 1) {
+//       i = 0;
+//       console.log("i");
+//     }
 
-    console.log(`arr[${i}]=`, arr[i], "       x=", x);
-    console.log("arr", arr, "\n\n");
-    console.log("x=", x, `       arr[${i}]=`, arr[i]);
-  }
-  console.log("count", count);
-  console.log("final", arr);
-}
-zerarArray([3, 3, 5, 2, 3]);
+//     console.log(`arr[${i}]=`, arr[i], "       x=", x);
+//     console.log("arr", arr, "\n\n");
+//     console.log("x=", x, `       arr[${i}]=`, arr[i]);
+//   }
+//   console.log("count", count);
+//   console.log("final", arr);
+// }
+// zerarArray([3, 3, 5, 2, 3]);
 
 // Problema 4
 

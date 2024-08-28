@@ -4,35 +4,60 @@
 Now go on, rocket your solution to this! And don't forget, the answer format should be a string - that string is our elusive doubled ID or an empty string if we find no doubles in the array. Make it shine, Voyager!
  */
 
-function findFirstDuplicateID(ids) {
-  let idSet = new Set();
+// function findFirstDuplicateID(ids) {
+//   let idSet = new Set();
 
-  // TODO: Find an id that appears more than once and return it
-  // monitor of duplicates
-  let duplicatesSet = new Set();
+//   // TODO: Find an id that appears more than once and return it
+//   // monitor of duplicates
+//   let duplicatesSet = new Set();
 
-  // iterate the id array, filling idSet and duplicatesSet
-  for (let id of ids) {
-    // console.log(id);
-    if (idSet.has(id)) {
-      duplicatesSet.add(id);
-    } else {
-      idSet.add(id);
-    }
-  }
-  // console.log("duplicatesSet", duplicatesSet);
+//   // iterate the id array, filling idSet and duplicatesSet
+//   for (let id of ids) {
+//     // console.log(id);
+//     if (idSet.has(id)) {
+//       duplicatesSet.add(id);
+//     } else {
+//       idSet.add(id);
+//     }
+//   }
+//   // console.log("duplicatesSet", duplicatesSet);
 
-  if (duplicatesSet) {
-    return duplicatesSet.values().next().value;
-  }
-  // Return an empty string if no duplicate ids are found
-  return "";
-}
+//   if (duplicatesSet) {
+//     return duplicatesSet.values().next().value;
+//   }
+//   // Return an empty string if no duplicate ids are found
+//   return "";
+// }
 
-console.log(
-  findFirstDuplicateID(["X123", "A456", "X123", "B789", "A456", "C111"])
-); // Expected "X123"
-console.log(findFirstDuplicateID(["Z999", "Y888", "Z999", "Y888"])); // Expected "Z999"
-console.log(
-  findFirstDuplicateID(["E100", "B200", "C300", "E100", "D400", "C300"])
-); // Expected "E100"
+// console.log(
+//   findFirstDuplicateID(["X123", "A456", "X123", "B789", "A456", "C111"])
+// ); // Expected "X123"
+// console.log(findFirstDuplicateID(["Z999", "Y888", "Z999", "Y888"])); // Expected "Z999"
+// console.log(
+//   findFirstDuplicateID(["E100", "B200", "C300", "E100", "D400", "C300"])
+// ); // Expected "E100"
+
+// function sortCharacters(input) {
+//     return input.split('').sort().join('');
+// }
+
+// function findAnagrams(array1, array2) {
+//     // implement this
+//         // implement this
+//     let total = 0
+
+//    const normalizedSet = new Set(array1.map(sortCharacters));
+
+//    array2.forEach(word => {
+//         if (normalizedSet.has(sortCharacters(word))) {
+//             total += word.length;
+//         }
+//     });
+
+//     return total
+// }
+
+// let array1 = ["cat", "dog", "tac", "god", "act"];
+// let array2 = ["tca", "ogd", "atc", "taco"];
+// let result = findAnagrams(array1, array2);
+// console.log(result);   // output: 9
