@@ -78,3 +78,32 @@ Alphabet rotated +3:    defghijklmnopqrstuvwxyzabc
 
 // // caesarCipher("love", 3)
 // caesarCipher("middle-Outz", 2);
+
+// function palindromeIndex(s) {
+//   let newArr = s.split("");
+//   let indexRight;
+//   console.log(newArr);
+
+//   for (let indexLeft = 0; indexLeft < newArr.length; indexLeft++) {
+//     indexRight = newArr.length - indexLeft - 1;
+//     console.log("Left", newArr[indexLeft], "Right", newArr[indexRight]);
+//     console.log("indexLeft", indexLeft, "indexRight", indexRight);
+
+//     while (indexLeft <= indexRight) {
+//       // console.log("impressao")
+//       if (newArr[indexLeft] !== newArr[indexRight]) {
+//         newArr.pop(newArr[indexRight]);
+//         console.log("diferentes");
+//         return indexRight;
+//       }
+//       console.log("iguais");
+//       break;
+//     }
+//   }
+//   return -1;
+//   console.log("palindromo");
+//   console.log(newArr);
+// }
+
+// palindromeIndex("aaab");
+// palindromeIndex("cac");
