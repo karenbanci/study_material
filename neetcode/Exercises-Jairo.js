@@ -946,3 +946,95 @@ output -> zyx
 // asterisks(3);
 // asterisks(5);
 // asterisks(10);
+
+// tem caractere repetido - SET
+// function repetido(str){
+//     let newMap = new Map()
+//     console.log(newMap)
+
+//     const arr = str.split("")
+//     console.log("arr", arr)
+
+//     for(let letter = 0; letter < arr.length; letter++){
+//         console.log(`index ${letter}:`, arr[letter])
+//         if(!newMap[arr[letter]]){
+//             newMap[arr[letter]] = 1
+//         } else {
+//             newMap[arr[letter]] +=1
+
+//             if(newMap[arr[letter]] >= 2){
+//             return true
+//             }
+//         }
+//     }
+//     console.log('resultado', newMap, "\n")
+//     return false
+
+// }
+
+// //  - FORÇA BRUTA
+// console.log(repetido('abb')) // true
+// console.log(repetido('abc')) // false
+
+// Escreva uma função que receba uma string e retorne a substring mais longa sem caracteres repetidos.
+// input	asrfsahhwefadw
+// output	hwefad
+function maxNoRepeatingSubstring(str) {
+  // -> string
+  let maxSubString = "";
+  let subString = "";
+  let strLen = str.length;
+  let lenSubStr = 1;
+  let i = 0;
+
+  while (true) {
+    let stopLoop = lenSubStr + i - 1;
+    subString = str.substring(i, i + lenSubStr);
+
+    if (isRepeating(subString) === false) {
+      // console.log("lenSubStr", lenSubStr);
+      // console.log("i", i);
+      // console.log("subString", subString);
+
+      maxSubString = subString;
+      // console.log("maxSubString", maxSubString);
+      lenSubStr++;
+
+      if (i >= strLen) {
+        break;
+      }
+    } else {
+      i++;
+      if (stopLoop === strLen) {
+        // console.log("braking now");
+        break;
+      }
+    }
+  }
+  console.log("final -------- ", maxSubString);
+  return maxSubString;
+}
+// maxNoRepeatingSubstring("asrfsahhwefadwuouuui"); // efadwuo
+maxNoRepeatingSubstring("absdeeffghijklmamnopa"); // fghijklma
+
+function isRepeating(str) {
+  // -> boolean
+  let newSet = new Set();
+
+  for (let index = 0; index < str.length; index++) {
+    // console.log("set", newSet);
+    // console.log("index", index, "letra", str[index]);
+    if (newSet.has(str[index])) {
+      // console.log("isRepeating true");
+      return true;
+    }
+    newSet.add(str[index]);
+  }
+  // console.log("isRepeating false");
+
+  return false;
+}
+
+// isRepeating("asrfs"); // true
+// isRepeating("abb"); // true
+// isRepeating('false') // false
