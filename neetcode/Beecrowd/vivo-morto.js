@@ -22,35 +22,65 @@ const fs = require("fs");
 const input = fs.readFileSync("entrada.txt", "utf8");
 const lines = input.split("\n").map((texto) => texto.trim());
 
+// console.log("input\n", input);
+
 var contador = 0;
 function getLine() {
   return lines[contador++];
 }
 
-// 1) Ler os participantes e partidas
-// "5 4" -> [ '5', '4' ]
-let [qtdParticipantes, qtsPartidas] = getLine().split(" ").map(parseInt);
-console.log("participantes", qtdParticipantes, "partidas", qtsPartidas);
-
-// 2) Criar a fila
-// " 3 2 1 4 5" -> ['3','2','1','4','5'] -> [3,2,1,4,5]
-let fila = getLine().split(" ").map(parseInt);
-console.log("fila", fila);
-
-// 3) Analizar as partidas
-for (let i = 0; i < qtsPartidas; i++) {
-  // 3.1) Ler o comando do chefe
-  let linha = getLine().split(" ").map(parseInt);
-  let qtdParticipanteRestante = linha[0];
-  let comandoChefe = linha[1];
-  let acoes = linha.slice(2);
-
-  // 3.2) Analiza cada participante
-  for (let j = 0; j < qtdParticipanteRestante; j++) {
-    if (acoes[j] != comandoChefe) {
-      acoes.aplice(j, 1);
-    }
-  }
+function eliminaJogador(fila, j) {
+  fila[j] = -1;
 }
 
-// 3.3) Remover os que não seguiram o comando
+function jogadorNaPartida(jogador) {
+  return jogador != -1;
+}
+
+let numeroTeste = 1;
+
+// 1) Ler os participantes e partidas
+// "5 4" -> [ '5', '4' ]
+
+let [qtdParticipantes, qtsPartidas] = getLine()
+  .split(" ")
+  .map((num) => parseInt(num));
+// console.log("participantes", qtdParticipantes, "partidas", qtsPartidas);
+
+while (qtdParticipantes != 0) {
+  // 2) Criar a fila
+  // " 3 2 1 4 5" -> ['3','2','1','4','5'] -> [3,2,1,4,5]
+  let fila = getLine()
+    .split(" ")
+    .map((num) => parseInt(num));
+  // console.log("50: fila", fila);
+
+  // 3) Analizar as partidas
+  for (let i = 0; i < qtsPartidas; i++) {
+    // 3.1) Ler o comando do chefe
+    let linha = getLine()
+      .split(" ")
+      .map((num) => parseInt(num));
+    let qtdParticipanteRestante = linha[0];
+    let comandoChefe = linha[1];
+    let acoes = linha.slice(2);
+
+    // 3.2) Analiza cada participante
+    for (let j = 0; j < qtdParticipanteRestante; j++) {
+      if (acoes[j] != comandoChefe) {
+        eliminaJogador(fila, j);
+      }
+    }
+    // 3.3) Remover os que não seguiram o comando
+    fila = fila.filter(jogadorNaPartida);
+    // console.log("fila 68:", fila);
+  }
+
+  console.log("Teste", numeroTeste);
+  console.log(fila[0], "\n");
+  numeroTeste++
+
+  [(qtdParticipantes, qtsPartidas)] = getLine()
+  .split(" ")
+  .map((num) => parseInt(num));
+}
