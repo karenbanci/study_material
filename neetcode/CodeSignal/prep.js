@@ -58,4 +58,4 @@ function solution(numbers) {
   return output;
 }
 
-solution([1, 2, 1, 3, 4]);
+console.log(solution([1, 2, 1, 3, 4]));
