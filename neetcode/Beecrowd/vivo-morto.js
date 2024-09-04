@@ -22,8 +22,6 @@ const fs = require("fs");
 const input = fs.readFileSync("entrada.txt", "utf8");
 const lines = input.split("\n").map((texto) => texto.trim());
 
-// console.log("input\n", input);
-
 var contador = 0;
 function getLine() {
   return lines[contador++];
@@ -40,20 +38,15 @@ function jogadorNaPartida(jogador) {
 let numeroTeste = 1;
 
 // 1) Ler os participantes e partidas
-// "5 4" -> [ '5', '4' ]
-
 let [qtdParticipantes, qtsPartidas] = getLine()
   .split(" ")
   .map((num) => parseInt(num));
-// console.log("participantes", qtdParticipantes, "partidas", qtsPartidas);
 
 while (qtdParticipantes != 0) {
   // 2) Criar a fila
-  // " 3 2 1 4 5" -> ['3','2','1','4','5'] -> [3,2,1,4,5]
   let fila = getLine()
     .split(" ")
     .map((num) => parseInt(num));
-  // console.log("50: fila", fila);
 
   // 3) Analizar as partidas
   for (let i = 0; i < qtsPartidas; i++) {
@@ -73,14 +66,13 @@ while (qtdParticipantes != 0) {
     }
     // 3.3) Remover os que não seguiram o comando
     fila = fila.filter(jogadorNaPartida);
-    // console.log("fila 68:", fila);
   }
 
   console.log("Teste", numeroTeste);
   console.log(fila[0], "\n");
-  numeroTeste++
+  numeroTeste++;
 
-  [(qtdParticipantes, qtsPartidas)] = getLine()
-  .split(" ")
-  .map((num) => parseInt(num));
+  [qtdParticipantes, qtsPartidas] = getLine()
+    .split(" ")
+    .map((num) => parseInt(num));
 }
