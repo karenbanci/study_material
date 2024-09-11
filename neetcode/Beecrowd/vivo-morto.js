@@ -19,7 +19,7 @@ A saída deve ser escrita no dispositivo de saída padrão (normalmente a tela).
 const fs = require("fs");
 
 // Read the file entrada.txt
-const input = fs.readFileSync("entrada.txt", "utf8");
+const input = fs.readFileSync("vivo-morto-entrada.txt", "utf8");
 const lines = input.split("\n").map((texto) => texto.trim());
 
 var contador = 0;
