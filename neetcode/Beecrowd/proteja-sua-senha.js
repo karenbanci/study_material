@@ -40,24 +40,28 @@ for (let tentativa = 0; tentativa < numeroDeAssociacoes; tentativa++) {
 
   associacoes.push({ senha, valoresSenha });
 
-  // console.log(`Senha: ${senha} \nValores da senha:`, valoresSenha);
+  console.log(`Senha: ${senha} \nValores da senha:`, valoresSenha);
   // console.log(valorDigito);
   // console.log("\n\n---------------------------------------");
 }
 
 let tamanhoDaSenha = 6;
 
-// console.log("linha 51", associacoes);
+console.log("linha 51", associacoes);
 
 // percorrer cada posicao da senha processar definir o valor
+let stringLinha = "";
+
 for (let posicao = 0; posicao < tamanhoDaSenha; posicao++) {
   let possibilidadesDoDigito = associacoes.map(
     (tentativa) => tentativa.valoresSenha[posicao]
   );
 
+  stringLinha += digitoCorreto(possibilidadesDoDigito) + " ";
   // console.log("possibilidadesDoDigito", possibilidadesDoDigito);
-  console.log(digitoCorreto(possibilidadesDoDigito));
 }
+
+console.log(stringLinha);
 
 function digitoCorreto(possibilidadesDoDigito) {
   //[...] converte em array para usar o metodo reduce
