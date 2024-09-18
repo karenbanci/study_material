@@ -14,60 +14,64 @@ let numeroDeAssociacoes = getLine()
   .split(" ")
   .map((num) => parseInt(num));
 
+// console.log("numeroDeAssociacoes", numeroDeAssociacoes);
+
 let numeroTeste = 1;
 
-console.log("Teste", numeroTeste);
+while (numeroDeAssociacoes != 0) {
+  console.log("Teste", numeroTeste);
 
-let valores = getLine()
-  .split(" ")
-  .map((val) => val);
+  let associacoes = [];
 
-let associacoes = [];
+  // pegar a senha e retorna o valor correspondente para cada tentativa
+  // neste ponto o numeroDeAssociacoes = 2 (no primeiro caso de teste)
+  for (let tentativa = 0; tentativa < numeroDeAssociacoes; tentativa++) {
+    valores = getLine()
+      .split(" ")
+      .map((val) => val);
+    // console.log("valores linha 40", valores);
 
-// pegar a senha e retorna o valor correspondente para cada tentativa
-for (let tentativa = 0; tentativa < numeroDeAssociacoes; tentativa++) {
-  // console.log("linha", valores);
+    // SEPARAR OS NUMEROS E AS SENHAS
+    let numeros = valores.slice(0, 10);
+    let senha = valores.slice(10);
 
-  // SEPARAR OS NUMEROS E AS SENHAS
-  let numeros = valores.slice(0, 10);
-  let senha = valores.slice(10);
+    let valoresSenha = valoresDaSenha(numeros, senha);
+    // console.log(`linha 39 Senha: ${senha} \nValores da senha:`, valoresSenha);
 
-  let valoresSenha = valoresDaSenha(numeros, senha);
+    associacoes.push({ senha, valoresSenha });
+  }
 
-  valores = getLine()
+  let tamanhoDaSenha = 6;
+
+  // console.log("linha 46-------", associacoes);
+
+  // percorrer cada posicao da senha processar definir o valor
+  let stringLinha = "";
+
+  for (let posicao = 0; posicao < tamanhoDaSenha; posicao++) {
+    let possibilidadesDoDigito = associacoes.map(
+      (tentativa) => tentativa.valoresSenha[posicao]
+    );
+
+    stringLinha += digitoCorreto(possibilidadesDoDigito) + " ";
+    // console.log("possibilidadesDoDigito", possibilidadesDoDigito);
+  }
+
+  console.log(stringLinha);
+
+  function digitoCorreto(possibilidadesDoDigito) {
+    //[...] converte em array para usar o metodo reduce
+    return possibilidadesDoDigito.reduce((acc, curr) =>
+      [...acc].filter((x) => curr.has(x))
+    )[0];
+  }
+
+  console.log("");
+  // resetar o numero de associacoes para a proxima
+  numeroDeAssociacoes = getLine()
     .split(" ")
-    .map((val) => val);
-
-  associacoes.push({ senha, valoresSenha });
-
-  console.log(`Senha: ${senha} \nValores da senha:`, valoresSenha);
-  // console.log(valorDigito);
-  // console.log("\n\n---------------------------------------");
-}
-
-let tamanhoDaSenha = 6;
-
-console.log("linha 51", associacoes);
-
-// percorrer cada posicao da senha processar definir o valor
-let stringLinha = "";
-
-for (let posicao = 0; posicao < tamanhoDaSenha; posicao++) {
-  let possibilidadesDoDigito = associacoes.map(
-    (tentativa) => tentativa.valoresSenha[posicao]
-  );
-
-  stringLinha += digitoCorreto(possibilidadesDoDigito) + " ";
-  // console.log("possibilidadesDoDigito", possibilidadesDoDigito);
-}
-
-console.log(stringLinha);
-
-function digitoCorreto(possibilidadesDoDigito) {
-  //[...] converte em array para usar o metodo reduce
-  return [...possibilidadesDoDigito].reduce((acc, curr) =>
-    [...acc].filter((x) => curr.has(x))
-  )[0];
+    .map((num) => parseInt(num));
+  numeroTeste++;
 }
 
 function senhaPadrao(numeros) {
@@ -119,5 +123,3 @@ function valoresDaSenha(numeros, senha) {
 
   return valor;
 }
-
-numeroTeste++;
