@@ -1,0 +1,12 @@
+<h1>{{this.title}}</h1>
+<h2>{{this.subtitle}}</h2>
+
+{{#each posts}}
+  <div class="container">
+
+    <h1>{{title}}</h1>
+    <h3>{{date}}</h3>
+    <img class="image-home" src={{image}} alt={{title}}>
+    <a href="post/{{id}}">Veja mais</a>
+  </div>
+{{/each}}

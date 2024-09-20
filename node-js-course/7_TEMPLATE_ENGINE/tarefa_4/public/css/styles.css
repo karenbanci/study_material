@@ -1,0 +1,60 @@
+body {
+  margin: 40px;
+}
+
+u {
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  text-decoration: none;
+}
+
+li {
+  text-decoration: none;
+}
+
+a {
+  font-weight: 400;
+  text-decoration: none;
+  color: rgb(8, 72, 100);
+  margin-top: 5px;
+}
+
+a::after {
+  color: rgb(218, 208, 18);
+}
+
+footer {
+  margin-top: 60px;
+}
+
+h1 {
+  margin-top: 15px;
+  font-size: 24px;
+  color: rgb(10, 79, 84);
+}
+
+h3 {
+  margin-top: 5px;
+  font-size: 18px;
+  color: rgb(32, 163, 172);
+}
+
+.container {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.image-home {
+  width: 200px;
+  height: 200px;
+}
+
+.image-post {
+  width: 500px;
+  height: 500px;
+}
