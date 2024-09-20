@@ -1,0 +1,41 @@
+body {
+  font-size: 24px;
+}
+
+h1 {
+  color: rgb(40, 127, 194);
+}
+
+h2 {
+  color: rgb(31, 92, 99);
+}
+
+p {
+  color: rgb(25, 172, 74);
+  margin-left: 10px;
+}
+
+a {
+  text-decoration: dashed;
+  font-weight: 100;
+}
+
+u {
+  color: aqua;
+  margin: 20px;
+}
+
+li {
+  color: rgb(42, 161, 97);
+  margin: 20px;
+}
+
+nav {
+  margin: 20px;
+  color: brown;
+}
+
+footer {
+  margin: 20px;
+  color: brown;
+}
