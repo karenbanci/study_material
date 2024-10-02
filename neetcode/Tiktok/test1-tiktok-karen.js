@@ -29,15 +29,15 @@ function storage(arr) {
   let definirSide = "";
   let operacoesTotais = 0;
 
-  // definir qual lado da array tem maior quantidade de 1
-  //esquerdo
+  // define which side of array has more 1
+  // left side
   for (let esq = 0; esq < metadeDaArray; esq++) {
     console.log(arr[esq]);
     if (arr[esq] === 1) {
       countEsq++;
     }
   }
-  // direito
+  // right side
   for (let dir = arr.length; dir > metadeDaArray + 1; dir--) {
     console.log(arr[dir]);
     if (arr[dir] === 1) {
