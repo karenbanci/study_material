@@ -9,44 +9,41 @@ function getLine() {
   return lines[contador++];
 }
 
-let diasETaxa = getLine()
+// Ler a primeira linha (N = quantidade de dias, C = taxa)
+let [quantidadeDias, taxa] = getLine()
   .split(" ")
   .map((num) => parseInt(num));
 
-let quantidadeDias = diasETaxa.slice(0, 1);
-let taxa = diasETaxa.slice(1);
-
-console.log(quantidadeDias, taxa);
-
+// Ler a segunda linha (as cotações diárias)
 let cotacoes = getLine()
   .split(" ")
   .map((num) => parseInt(num));
 
-// console.log(cotacoes);
+function maxLucro(quantidadeDias, taxa, cotacoes) {
+  // Inicializar o menor preço como o primeiro dia
+  let menorPreco = cotacoes[0];
+  let maxLucro = 0; // O lucro máximo começa como zero
 
-while (quantidadeDias != 0) {
-  let diaCompra;
-  let diaVenda;
-  let arrMaxLucro = [];
-  let maxLucro = 0;
+  // Iterar pelas cotações a partir do segundo dia
+  for (let i = 1; i < quantidadeDias; i++) {
+    // Calcular o lucro se vendermos no dia i
+    let lucro = cotacoes[i] - menorPreco - taxa;
 
-  for (let i = 0; i < cotacoes.length - 1; i++) {
-    for (let j = i + 1; j < cotacoes.length; j++) {
-      // console.log(`dia: ${i} cotação: ${cotacoes[i]}`);
-      diaCompra = Number(cotacoes[i]) + Number(taxa);
-      diaVenda = Number(cotacoes[j]);
-      console.log(`compra:${diaCompra} venda:${diaVenda}`);
-      if (diaCompra > diaVenda) {
-        continue;
-      }
-      arrMaxLucro.push(diaVenda - diaCompra);
-      console.log("array de lucro", arrMaxLucro);
+    // Atualizar o lucro máximo se o atual for maior
+    if (lucro > maxLucro) {
+      maxLucro = lucro;
     }
-    quantidadeDias--;
+
+    // Atualizar o menor preço de compra se o preço atual for menor
+    if (cotacoes[i] < menorPreco) {
+      menorPreco = cotacoes[i];
+    }
   }
 
-  maxLucro = Math.max(...arrMaxLucro);
-  console.log(maxLucro, "\n\n");
-  return maxLucro;
+  // Se não houver lucro positivo, o investidor não compra
+  return maxLucro > 0 ? maxLucro : 0;
 }
-// resposta no Beecrowd - Time limit exceeded
+
+// Executar o cálculo do lucro máximo
+const resultado = maxLucro(quantidadeDias, taxa, cotacoes);
+console.log(resultado);
