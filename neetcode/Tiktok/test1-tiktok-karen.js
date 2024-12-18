@@ -21,77 +21,144 @@
 
 // CORRIGIR
 
-function storage(arr) {
-  const metadeDaArray = parseInt(arr.length / 2);
-  // console.log(metadeDaArray, arr);
-  let countEsq = 0;
-  let countDir = 0;
-  let definirSide = "";
-  let operacoesTotais = 0;
+// function storage(arr) {
+//   const metadeDaArray = parseInt(arr.length / 2);
+//   // console.log(metadeDaArray, arr);
+//   let countEsq = 0;
+//   let countDir = 0;
+//   let definirSide = "";
+//   let operacoesTotais = 0;
 
-  // define which side of array has more 1
+//   // define which side of array has more 1
+//   // left side
+//   for (let esq = 0; esq < metadeDaArray; esq++) {
+//     console.log(arr[esq]);
+//     if (arr[esq] === 1) {
+//       countEsq++;
+//     }
+//   }
+//   // right side
+//   for (let dir = arr.length; dir > metadeDaArray + 1; dir--) {
+//     console.log(arr[dir]);
+//     if (arr[dir] === 1) {
+//       countDir++;
+//     }
+//   }
+
+//   if (countEsq > countDir) {
+//     definirSide = "esquerdo";
+//   } else {
+//     definirSide = "direito";
+//   }
+
+//   // console.log("countEsq", countEsq, "countDir", countDir);
+//   console.log(definirSide);
+
+//   for (
+//     let ponteiroEsquerdo = 0;
+//     ponteiroEsquerdo < metadeDaArray;
+//     ponteiroEsquerdo++
+//   ) {
+//     for (
+//       let ponteiroDireito = arr.length;
+//       ponteiroDireito > metadeDaArray;
+//       ponteiroDireito--
+//     ) {
+//       if (ponteiroEsquerdo > ponteiroDireito) {
+//         break;
+//       }
+//       // começar a substtuir depois que o lado foi definido
+//       let temporario;
+//       // while (operacoesTotais < 2) {
+//       if (definirSide == "esquerdo") {
+//         if (arr[ponteiroEsquerdo] === 0 && arr[ponteiroDireito] === 1) {
+//           temporario = arr[ponteiroEsquerdo];
+//           arr[ponteiroEsquerdo] = arr[ponteiroDireito];
+//           arr[ponteiroDireito] = temporario;
+//           operacoesTotais++;
+//         }
+//       } else if (definirSide == "direito") {
+//         if (arr[ponteiroEsquerdo] === 1 && arr[ponteiroDireito] === 0) {
+//           temporario = arr[ponteiroDireito];
+//           arr[ponteiroDireito] = arr[ponteiroEsquerdo];
+//           arr[ponteiroEsquerdo] = temporario;
+//           operacoesTotais++;
+//         }
+//       }
+//     }
+//     // }
+//   }
+//   console.log(arr);
+//   console.log(operacoesTotais, "\n\n\n");
+// }
+
+function storage(arr) {
+  const halfArray = parseInt(arr.length / 2);
+  console.log(halfArray, arr);
+  let leftCount = 0;
+  let rightCount = 0;
+  let definedSide = "";
+  let totalOperations = 0;
+
+  // define which side of array has more 1s
   // left side
-  for (let esq = 0; esq < metadeDaArray; esq++) {
-    console.log(arr[esq]);
-    if (arr[esq] === 1) {
-      countEsq++;
+  for (let left = 0; left < halfArray; left++) {
+    console.log(arr[left]);
+    if (arr[left] === 1) {
+      leftCount++;
     }
   }
   // right side
-  for (let dir = arr.length; dir > metadeDaArray + 1; dir--) {
-    console.log(arr[dir]);
-    if (arr[dir] === 1) {
-      countDir++;
+  for (let right = arr.length; right > halfArray + 1; right--) {
+    console.log(arr[right]);
+    if (arr[right] === 1) {
+      rightCount++;
     }
   }
 
-  if (countEsq > countDir) {
-    definirSide = "esquerdo";
+  if (leftCount > rightCount) {
+    definedSide = "left";
   } else {
-    definirSide = "direito";
+    definedSide = "right";
   }
 
-  // console.log("countEsq", countEsq, "countDir", countDir);
-  console.log(definirSide);
+  console.log("leftCount", leftCount, "rightCount", rightCount);
+  console.log(definedSide);
 
-  for (
-    let ponteiroEsquerdo = 0;
-    ponteiroEsquerdo < metadeDaArray;
-    ponteiroEsquerdo++
-  ) {
+  for (let leftPointer = 0; leftPointer < halfArray; leftPointer++) {
     for (
-      let ponteiroDireito = arr.length;
-      ponteiroDireito > metadeDaArray;
-      ponteiroDireito--
+      let rightPointer = arr.length;
+      rightPointer > halfArray;
+      rightPointer--
     ) {
-      if (ponteiroEsquerdo > ponteiroDireito) {
+      if (leftPointer > rightPointer) {
         break;
       }
-      // começar a substtuir depois que o lado foi definido
-      let temporario;
-      // while (operacoesTotais < 2) {
-      if (definirSide == "esquerdo") {
-        if (arr[ponteiroEsquerdo] === 0 && arr[ponteiroDireito] === 1) {
-          temporario = arr[ponteiroEsquerdo];
-          arr[ponteiroEsquerdo] = arr[ponteiroDireito];
-          arr[ponteiroDireito] = temporario;
-          operacoesTotais++;
+      // start substituting after the side is defined
+      let temp;
+      // while (totalOperations < 2) {
+      if (definedSide == "left") {
+        if (arr[leftPointer] === 0 && arr[rightPointer] === 1) {
+          temp = arr[leftPointer];
+          arr[leftPointer] = arr[rightPointer];
+          arr[rightPointer] = temp;
+          totalOperations++;
         }
-      } else if (definirSide == "direito") {
-        if (arr[ponteiroEsquerdo] === 1 && arr[ponteiroDireito] === 0) {
-          temporario = arr[ponteiroDireito];
-          arr[ponteiroDireito] = arr[ponteiroEsquerdo];
-          arr[ponteiroEsquerdo] = temporario;
-          operacoesTotais++;
+      } else if (definedSide == "right") {
+        if (arr[leftPointer] === 1 && arr[rightPointer] === 0) {
+          temp = arr[rightPointer];
+          arr[rightPointer] = arr[leftPointer];
+          arr[leftPointer] = temp;
+          totalOperations++;
         }
       }
     }
     // }
   }
   console.log(arr);
-  console.log(operacoesTotais, "\n\n\n");
+  console.log(totalOperations, "\n\n\n");
 }
 
-// storage([1, 0, 0, 1, 1, 0, 0, 0, 1])
-storage([1, 0, 1, 0, 0, 1]);
-storage([1, 0, 0, 0, 1, 1]);
+storage([1, 0, 0, 1, 1, 0, 0, 0, 1]);
+// storage([1, 0, 1, 0, 0, 1]);
+// storage([1, 0, 0, 0, 1, 1]);
