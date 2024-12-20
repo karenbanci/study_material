@@ -1,6 +1,7 @@
 <h1>Edite o seu livro:</h1>
 
-<form action="" method="POST" class="form">
+<form action="/books/updatebook" method="POST" class="form">
+  <input type="hidden" name="id" value="{{book.id}}">
   <div class="form-control">
     <label for="title">Título:</label>
     <input

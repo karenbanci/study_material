@@ -18,6 +18,7 @@ app.get("/", (req, res) => {
   res.render("home");
 });
 
+// criar um livro
 app.post("/books/insertbook", (req, res) => {
   const title = req.body.title;
   const pageqty = req.body.pageqty;
@@ -68,6 +69,7 @@ app.get("/books/:id", (req, res) => {
   });
 });
 
+// aditar dados
 app.get("/books/edit/:id", (req, res) => {
   const id = req.params.id;
 
@@ -82,6 +84,23 @@ app.get("/books/edit/:id", (req, res) => {
     const book = result[0];
 
     res.render("editbook", { book });
+  });
+});
+
+// atualizar dados no banco de dados
+app.post("/books/updatebook", (req, res) => {
+  const id = req.body.id;
+  const title = req.body.title;
+  const pageqty = req.body.pageqty;
+
+  const sql = `UPDATE books SET title = '${title}', pageqty = '${pageqty}' WHERE id = '${id}'`;
+
+  conn.query(sql, function (err, result) {
+    if (err) {
+      console.log(err);
+      return res.status(500).send("Erro ao atualizar livro");
+    }
+    res.redirect("/books");
   });
 });
 
