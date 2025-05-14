@@ -61,7 +61,7 @@ export default function Experience() {
             textAlign="center"
             color={"#ffffff"}
           >
-            Karen Honorio
+            Karen
           </Text>
           <Text
             font={"./Lobster/Lobster-Regular.ttf"}
