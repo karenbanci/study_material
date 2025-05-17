@@ -100,11 +100,30 @@ app.get("/", async (req, res) => {
   res.render("home", { users: users });
 });
 
+// criar o relacionamento entre os modelos
+app.post("/address/create", async (req, res) => {
+  const UserId = req.body.UserId;
+  const street = req.body.street;
+  const number = req.body.number;
+  const city = req.body.city;
+
+  const address = {
+    UserId,
+    street,
+    number,
+    city,
+  };
+
+  await Address.create(address);
+
+  res.redirect("/users/edit/" + UserId);
+});
+
 // criar o banco de dados
 // o método sync() é usado para sincronizar o banco de dados com o modelo
 conn
-  .sync({ force: true }) // recria do banco de dados e vai apagar os dados existentes
-  // .sync()
+  // .sync({ force: true }) // recria do banco de dados e vai apagar os dados existentes
+  .sync()
   .then(() => {
     app.listen(3000, () => {
       console.log("Servidor rodando na porta 3000");

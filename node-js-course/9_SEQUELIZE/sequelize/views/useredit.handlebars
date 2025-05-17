@@ -19,5 +19,23 @@
     <label for="newsletter">Enviar Promoções?</label>
   </div>
   <input type="submit" value="Editar">
-
 </form>
+<div class="address-container">
+  <h2>Endereço</h2>
+  <form action="/address/create" method="POST" class="form">
+    <input type="hidden" name="UserId" value="{{user.id}}">
+    <div class="form-control">
+      <label for="street">Rua</label>
+      <input type="text" name="street" placeholder="Digite a rua:" value="{{user.address.street}}">
+    </div>
+    <div class="form-control">
+      <label for="number">Número</label>
+      <input type="text" name="number" placeholder="Digite o número da residência:" value="{{user.address.number}}">
+    </div>
+    <div class="form-control">
+      <label for="city">Cidade</label>
+      <input type="text" name="city" placeholder="Digite a cidade" value="{{user.address.city}}">
+    </div>
+    <input type="submit" value="Incluir Endereço">
+  </form>
+</div>

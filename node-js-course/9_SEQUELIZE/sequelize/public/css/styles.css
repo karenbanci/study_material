@@ -125,3 +125,19 @@ h1 {
   border-color: #721c24;
   color: #721c24;
 }
+
+/* Address */
+.address-container {
+  max-width: 1000px;
+  margin: 1rem auto;
+  padding-top: 1rem;
+  border-top: 1px solid #ccc;
+}
+
+.address-item h2 {
+  margin-bottom: 0.8rem;
+}
+
+.address-container {
+  width: 300px;
+}
