@@ -3,6 +3,7 @@ const exphbs = require("express-handlebars");
 const conn = require("./db/conn");
 
 const User = require("./models/User");
+const Address = require("./models/Address");
 
 const app = express();
 
@@ -102,8 +103,8 @@ app.get("/", async (req, res) => {
 // criar o banco de dados
 // o método sync() é usado para sincronizar o banco de dados com o modelo
 conn
-  // .sync({ force: true }) // recria do banco de dados e vai apagar os dados existentes
-  .sync()
+  .sync({ force: true }) // recria do banco de dados e vai apagar os dados existentes
+  // .sync()
   .then(() => {
     app.listen(3000, () => {
       console.log("Servidor rodando na porta 3000");
