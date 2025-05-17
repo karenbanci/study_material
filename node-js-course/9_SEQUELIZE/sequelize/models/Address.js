@@ -19,6 +19,9 @@ const Address = db.define("Address", {
   },
 });
 
+// um usuario pode ter muitos endereços
+User.hasMany(Address);
+
 // dentro da tabela Address, eu quero que tenha uma chave estrangeira chamada userId
 Address.belongsTo(User, {
   foreignKey: {

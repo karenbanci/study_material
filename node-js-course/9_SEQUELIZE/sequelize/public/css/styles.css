@@ -136,8 +136,24 @@ h1 {
 
 .address-item h2 {
   margin-bottom: 0.8rem;
+  padding-bottom: 30px;
 }
 
 .address-container {
   width: 300px;
+  /* padding-bottom: 100px; */
+}
+
+.address-item {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid #ccc;
+}
+
+.address-item form {
+  margin-top: 10px;
+}
+
+.cidade {
+  padding-bottom: 30px;
 }

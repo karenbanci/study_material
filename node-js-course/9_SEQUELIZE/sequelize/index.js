@@ -61,9 +61,13 @@ app.post("/users/delete/:id", async (req, res) => {
 app.get("/users/edit/:id", async (req, res) => {
   const id = req.params.id;
 
-  const user = await User.findOne({ raw: true, where: { id: id } });
-  console.log("estamos editando o usuário: " + user.name);
-  res.render("useredit", { user });
+  try {
+    const user = await User.findOne({ include: Address, where: { id: id } });
+    // exibir o endereço do usuário e acessar os dados do usuário
+    res.render("useredit", { user: user.get({ plain: true }) });
+  } catch (error) {
+    console.log("Erro ao encontrar o usuário: " + error);
+  }
 });
 
 // atualizar o usuário
@@ -115,6 +119,15 @@ app.post("/address/create", async (req, res) => {
   };
 
   await Address.create(address);
+
+  res.redirect("/users/edit/" + UserId);
+});
+
+app.post("/address/delete", async (req, res) => {
+  const UserId = req.body.UserId;
+  const id = req.body.id;
+
+  await Address.destroy({ where: { id: id } });
 
   res.redirect("/users/edit/" + UserId);
 });
